@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Console | MiroFish</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script defer src="/assets/analytics.js"></script>
+  <style>
+    :root {
+      --ocean-dark: #0d1b2e;
+      --ocean-mid: #0f2a44;
+      --blue-primary: #1e88e5;
+      --blue-electric: #00c8f0;
+      --cyan-glow: #00e5ff;
+      --bg-pale: #f5faff;
+      --bg-section: #edf6ff;
+      --text-primary: #0d1b2e;
+      --text-secondary: #294866;
+      --text-muted: #5c7a99;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-deep: 0 24px 70px rgba(13, 27, 46, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(0, 200, 240, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(30, 136, 229, 0.16), transparent 30%),
+        linear-gradient(180deg, #f8fcff 0%, var(--bg-section) 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid rgba(30, 136, 229, 0.12);
+      background: rgba(245, 250, 255, 0.86);
+      backdrop-filter: blur(16px);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .brand img { width: 36px; height: 36px; }
+    .back-link {
+      border: 1px solid rgba(30, 136, 229, 0.18);
+      border-radius: 999px;
+      padding: 9px 16px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 56px 0 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(380px, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .info-card,
+    .status-card {
+      border: 1px solid rgba(30, 136, 229, 0.14);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow-deep);
+      overflow: hidden;
+    }
+
+    .info-card {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(237, 246, 255, 0.82)),
+        radial-gradient(circle at 12% 15%, rgba(0, 229, 255, 0.14), transparent 24%);
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--blue-primary);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-top: 12px;
+    }
+
+    .lead {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .order-meta {
+      display: grid;
+      gap: 10px;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(13, 27, 46, 0.07);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .meta-row strong { color: var(--text-primary); font-weight: 700; }
+    .meta-row:last-child { border-bottom: none; }
+
+    .plan-features {
+      display: grid;
+      gap: 8px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+    .feature-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-electric);
+      flex-shrink: 0;
+    }
+
+    .status-card { padding: 28px; }
+
+    .status-header {
+      margin-bottom: 24px;
+    }
+    .status-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .status-subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 0;
+      margin-bottom: 24px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 42px;
+      bottom: 0;
+      width: 2px;
+      background: rgba(30, 136, 229, 0.15);
+    }
+    .step.done::after { background: rgba(0, 200, 240, 0.4); }
+    .step.active::after { background: rgba(30, 136, 229, 0.2); }
+
+    .step-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      border: 2px solid rgba(30, 136, 229, 0.2);
+      background: var(--bg-pale);
+      color: var(--text-muted);
+    }
+    .step.done .step-icon {
+      border-color: var(--blue-electric);
+      background: rgba(0, 200, 240, 0.1);
+      color: var(--blue-electric);
+    }
+    .step.active .step-icon {
+      border-color: var(--blue-primary);
+      background: rgba(30, 136, 229, 0.1);
+      color: var(--blue-primary);
+      animation: pulse-ring 1.8s infinite;
+    }
+    .step.failed .step-icon {
+      border-color: #e11d48;
+      background: rgba(225, 29, 72, 0.08);
+      color: #e11d48;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(30, 136, 229, 0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(30, 136, 229, 0); }
+    }
+
+    .step-body { flex: 1; padding-top: 4px; }
+    .step-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .step.pending .step-label { color: var(--text-muted); }
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .actions { display: grid; gap: 12px; }
+
+    .console-btn {
+      min-height: 52px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--ocean-dark);
+      background: linear-gradient(135deg, var(--blue-electric), var(--cyan-glow));
+      box-shadow: 0 16px 32px rgba(0, 200, 240, 0.22);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .console-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(0, 200, 240, 0.28);
+    }
+    .console-btn[hidden] { display: none; }
+
+    .status-msg {
+      min-height: 48px;
+      border-radius: 16px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      background: var(--bg-pale);
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      color: var(--text-secondary);
+    }
+    .status-msg[data-tone="error"] {
+      color: #9f1239;
+      background: #fff1f2;
+      border-color: rgba(225, 29, 72, 0.18);
+    }
+    .status-msg[data-tone="success"] {
+      color: #0f766e;
+      background: #ecfdf5;
+      border-color: rgba(13, 148, 136, 0.18);
+    }
+
+    .loading-skeleton {
+      background: linear-gradient(90deg, #e8f4ff 25%, #d4eaff 50%, #e8f4ff 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 8px;
+      height: 18px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      main { grid-template-columns: 1fr; padding-top: 32px; }
+      .info-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" alt="" />
+      <span>MiroFish</span>
+    </a>
+    <a class="back-link" href="/">Back to Home</a>
+  </nav>
+
+  <main>
+    <section class="info-card" id="info-section">
+      <div>
+        <p class="eyebrow">MiroFish Console</p>
+        <h1 id="workspace-title">Your Workspace</h1>
+        <p class="lead" id="workspace-lead">Loading your workspace details...</p>
+      </div>
+
+      <div class="order-meta" id="order-meta">
+        <div class="meta-row"><span>Order</span><strong id="meta-order-number"><span class="loading-skeleton" style="width:120px;display:inline-block"></span></strong></div>
+        <div class="meta-row"><span>Plan</span><strong id="meta-plan"></strong></div>
+        <div class="meta-row"><span>Amount</span><strong id="meta-amount"></strong></div>
+        <div class="meta-row"><span>Payment</span><strong id="meta-payment"></strong></div>
+      </div>
+
+      <div class="plan-features" id="plan-features" hidden>
+        <p style="font-size:0.82rem;font-weight:700;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Included</p>
+      </div>
+    </section>
+
+    <section class="status-card">
+      <div class="status-header">
+        <div class="status-title">Workspace Status</div>
+        <div class="status-subtitle" id="status-subtitle">Checking status...</div>
+      </div>
+
+      <div class="steps" id="steps">
+        <div class="step done" id="step-payment">
+          <div class="step-icon">✓</div>
+          <div class="step-body">
+            <div class="step-label">Payment Confirmed</div>
+            <div class="step-desc">Your order has been received.</div>
+          </div>
+        </div>
+        <div class="step pending" id="step-queued">
+          <div class="step-icon">2</div>
+          <div class="step-body">
+            <div class="step-label">Workspace Queued</div>
+            <div class="step-desc">Your workspace is in the deployment queue.</div>
+          </div>
+        </div>
+        <div class="step pending" id="step-building">
+          <div class="step-icon">3</div>
+          <div class="step-body">
+            <div class="step-label">Building Workspace</div>
+            <div class="step-desc">Installing MiroFish and configuring your environment.</div>
+          </div>
+        </div>
+        <div class="step pending" id="step-ready">
+          <div class="step-icon">4</div>
+          <div class="step-body">
+            <div class="step-label">Workspace Ready</div>
+            <div class="step-desc">Your MiroFish prediction workspace is live.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="console-btn" id="open-console-btn" href="#" target="_blank" rel="noopener" hidden>Open MiroFish Console</a>
+        <div class="status-msg" id="status-msg">Loading...</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const planFeatureMap = {
+      starter: ['100 simulations / month', 'Up to 50 agents per simulation', 'Basic prediction reports', 'Text seed upload'],
+      pro: ['500 simulations / month', 'Up to 500 agents per simulation', 'Advanced structured reports', 'PDF / MD / TXT seed upload', 'Full REST API access', 'Variable injection support'],
+      enterprise: ['Unlimited simulations', 'Unlimited agents', 'White-label deployment', 'Dedicated success engineer', 'Custom LLM model integration', 'SLA support'],
+    }
+
+    const planLabelMap = {
+      'starter:monthly': 'Starter · Monthly',
+      'starter:annual': 'Starter · Annual',
+      'pro:monthly': 'Pro · Monthly',
+      'pro:annual': 'Pro · Annual',
+      'enterprise:monthly': 'Enterprise · Monthly',
+      'enterprise:annual': 'Enterprise · Annual',
+    }
+
+    const params = new URLSearchParams(window.location.search)
+    const orderId = params.get('order') ?? ''
+    const claimToken = params.get('claim') ?? ''
+    const guestToken = params.get('guest_token') ?? params.get('guest') ?? ''
+
+    const statusMsg = document.getElementById('status-msg')
+    const statusSubtitle = document.getElementById('status-subtitle')
+    const openConsoleBtn = document.getElementById('open-console-btn')
+    const workspaceTitle = document.getElementById('workspace-title')
+    const workspaceLead = document.getElementById('workspace-lead')
+    const planFeaturesEl = document.getElementById('plan-features')
+
+    const stepPayment = document.getElementById('step-payment')
+    const stepQueued = document.getElementById('step-queued')
+    const stepBuilding = document.getElementById('step-building')
+    const stepReady = document.getElementById('step-ready')
+
+    function formatMoney(amountCents, currency) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currency || 'USD',
+        minimumFractionDigits: amountCents % 100 === 0 ? 0 : 2,
+        maximumFractionDigits: amountCents % 100 === 0 ? 0 : 2,
+      }).format(amountCents / 100)
+    }
+
+    function applyStepState(el, state) {
+      el.className = 'step ' + state
+      const icon = el.querySelector('.step-icon')
+      if (state === 'done') icon.textContent = '✓'
+      else if (state === 'failed') icon.textContent = '✗'
+    }
+
+    function renderStatus(order, instance) {
+      if (!order) {
+        statusMsg.textContent = 'Order not found. Make sure you followed the link from the payment confirmation.'
+        statusMsg.dataset.tone = 'error'
+        statusSubtitle.textContent = 'Order not found'
+        return
+      }
+
+      const planId = order.plan_id ?? ''
+      const planKey = planId.split(':')[0]
+      const planLabel = planLabelMap[planId] ?? planId
+      const features = planFeatureMap[planKey] ?? []
+
+      document.getElementById('meta-order-number').textContent = order.order_number ?? order.id
+      document.getElementById('meta-plan').textContent = planLabel
+      document.getElementById('meta-amount').textContent = formatMoney(order.amount_cents, order.currency)
+      document.getElementById('meta-payment').textContent = order.payment_status === 'paid' ? '✓ Confirmed' : 'Pending'
+
+      workspaceTitle.textContent = `Your ${planLabel.split('·')[0].trim()} Workspace`
+      workspaceLead.textContent = 'Your MiroFish hosted prediction workspace. Track deployment progress below.'
+
+      if (features.length > 0) {
+        planFeaturesEl.hidden = false
+        features.forEach(f => {
+          const existing = planFeaturesEl.querySelector(`[data-feature="${f}"]`)
+          if (!existing) {
+            const div = document.createElement('div')
+            div.className = 'feature-item'
+            div.dataset.feature = f
+            div.innerHTML = `<span class="feature-dot"></span><span>${f}</span>`
+            planFeaturesEl.appendChild(div)
+          }
+        })
+      }
+
+      if (order.payment_status !== 'paid') {
+        applyStepState(stepPayment, 'active')
+        statusSubtitle.textContent = 'Waiting for payment confirmation...'
+        statusMsg.textContent = 'Your payment is being verified. This page will update automatically.'
+        statusMsg.removeAttribute('data-tone')
+        return
+      }
+
+      applyStepState(stepPayment, 'done')
+
+      if (!instance) {
+        applyStepState(stepQueued, 'active')
+        statusSubtitle.textContent = 'Workspace queued for deployment'
+        statusMsg.textContent = 'Payment confirmed! Your workspace has been queued. Deployment will start shortly.'
+        statusMsg.removeAttribute('data-tone')
+        return
+      }
+
+      const status = instance.status ?? 'queued'
+
+      if (status === 'queued') {
+        applyStepState(stepQueued, 'active')
+        statusSubtitle.textContent = 'Workspace queued — deployment starting soon'
+        statusMsg.textContent = 'Your workspace is in the queue. Deployment will begin automatically.'
+        statusMsg.removeAttribute('data-tone')
+      } else if (status === 'creating') {
+        applyStepState(stepQueued, 'done')
+        applyStepState(stepBuilding, 'active')
+        statusSubtitle.textContent = 'Building your workspace...'
+        statusMsg.textContent = 'Installing MiroFish and configuring your environment. This usually takes 2–5 minutes.'
+        statusMsg.removeAttribute('data-tone')
+      } else if (status === 'running') {
+        applyStepState(stepQueued, 'done')
+        applyStepState(stepBuilding, 'done')
+        applyStepState(stepReady, 'done')
+        statusSubtitle.textContent = 'Your workspace is live!'
+        statusMsg.dataset.tone = 'success'
+        statusMsg.textContent = 'Your MiroFish workspace is ready. Click the button above to open your console.'
+        if (instance.console_url) {
+          openConsoleBtn.href = instance.console_url
+          openConsoleBtn.hidden = false
+        }
+      } else if (status === 'failed') {
+        applyStepState(stepQueued, 'done')
+        applyStepState(stepBuilding, 'failed')
+        statusSubtitle.textContent = 'Deployment failed'
+        statusMsg.dataset.tone = 'error'
+        statusMsg.textContent = instance.error_message
+          ? `Deployment failed: ${instance.error_message}. Please contact support with your order ID: ${order.order_number ?? order.id}`
+          : `Deployment failed. Please contact support with your order ID: ${order.order_number ?? order.id}`
+      }
+    }
+
+    let pollTimer = null
+
+    function stopPolling() {
+      if (pollTimer) { clearInterval(pollTimer); pollTimer = null }
+    }
+
+    function rememberWorkspace(order, instance) {
+      if (!order && !claimToken) return
+      const currentOrderId = order?.id || orderId || ''
+      const consolePath = claimToken
+        ? `/console?claim=${encodeURIComponent(claimToken)}`
+        : guestToken
+          ? `/console?order=${encodeURIComponent(currentOrderId)}&guest_token=${encodeURIComponent(guestToken)}`
+          : `/console?order=${encodeURIComponent(currentOrderId)}`
+      try {
+        window.localStorage.setItem('mirofish:lastWorkspace', JSON.stringify({
+          orderId: currentOrderId,
+          claimToken,
+          guestToken,
+          consolePath,
+          instanceUrl: instance?.console_url || '',
+          savedAt: new Date().toISOString(),
+        }))
+      } catch {}
+    }
+
+    async function loadStatus() {
+      if (!orderId && !claimToken) {
+        statusMsg.textContent = 'No order or claim token found. Please return to the checkout page.'
+        statusMsg.dataset.tone = 'error'
+        stopPolling()
+        return
+      }
+
+      try {
+        const query = claimToken
+          ? `claim=${encodeURIComponent(claimToken)}`
+          : `order=${encodeURIComponent(orderId)}${guestToken ? `&guest_token=${encodeURIComponent(guestToken)}` : ''}`
+        const res = await fetch(`/api/console-data?${query}`)
+        const data = await res.json().catch(() => ({}))
+        const { order, instance } = data
+        rememberWorkspace(order, instance)
+        renderStatus(order, instance)
+
+        const instanceStatus = instance?.status ?? null
+        const paymentStatus = order?.payment_status ?? 'pending'
+
+        const isTerminal = instanceStatus === 'running' || instanceStatus === 'failed'
+        const isPendingPayment = paymentStatus !== 'paid' && !instanceStatus
+
+        if (isTerminal) {
+          stopPolling()
+        } else if (!isPendingPayment && !pollTimer) {
+          pollTimer = setInterval(loadStatus, 5000)
+        }
+      } catch {
+        statusMsg.textContent = 'Could not load workspace status. Retrying...'
+        statusMsg.removeAttribute('data-tone')
+      }
+    }
+
+    loadStatus()
+    if (orderId || claimToken) {
+      pollTimer = setInterval(loadStatus, 5000)
+    }
+  </script>
+</body>
+</html>

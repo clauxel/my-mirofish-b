@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#eef6ff">
+  <title>MiroFish GitHub | Repository, Docker, License, and Setup Notes</title>
+  <meta name="description" content="MiroFish GitHub guide for the 666ghj/MiroFish repository: stars, forks, AGPL-3.0 license, Docker Compose, .env.example, setup checks, and self-hosting expectations.">
+  <meta name="keywords" content="MiroFish GitHub, MiroFish repository, 666ghj MiroFish, MiroFish Docker Compose, MiroFish .env.example, MiroFish AGPL-3.0, MiroFish setup">
+  <link rel="canonical" href="https://mirofish.best/mirofish-github/">
+  <meta property="og:title" content="MiroFish GitHub Guide">
+  <meta property="og:description" content="Repository facts, Docker setup checks, license notes, and source review guidance for MiroFish.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mirofish.best/mirofish-github/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="../assets/seo-pages.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://mirofish.best/mirofish-github/#webpage",
+        "url": "https://mirofish.best/mirofish-github/",
+        "name": "MiroFish GitHub",
+        "description": "Guide to the public MiroFish GitHub repository, Docker setup, license, and source review.",
+        "isPartOf": { "@type": "WebSite", "name": "MiroFish", "url": "https://mirofish.best/" },
+        "sameAs": ["https://github.com/666ghj/MiroFish"]
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "666ghj/MiroFish",
+        "codeRepository": "https://github.com/666ghj/MiroFish",
+        "programmingLanguage": ["Python", "Vue", "JavaScript", "Dockerfile"],
+        "license": "https://github.com/666ghj/MiroFish/blob/main/LICENSE"
+      }
+    ]
+  }
+  </script>
+  <script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../">MiroFish</a>
+    <nav class="navlinks" aria-label="Guide navigation">
+      <a href="../mirofish-how-to-use/">How to use</a>
+      <a href="../mirofish-offline/">Offline</a>
+      <a href="../mirofish-ai/">AI</a>
+      <a href="../mirofish-demo/">Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">MiroFish GitHub</p>
+      <h1>The MiroFish GitHub repository is the source to inspect before self-hosting.</h1>
+      <p class="lead">The public repository is <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">github.com/666ghj/MiroFish</a>. Current public GitHub metadata shows roughly 59k+ stars, 9.2k+ forks, Python as the primary language, and an AGPL-3.0 license. Use those source signals to verify the project before installation.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">Open GitHub repository</a>
+        <a class="button" href="../mirofish-offline/">Read self-hosting guide</a>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div class="panel">
+        <h2>What to check on GitHub</h2>
+        <ol>
+          <li><strong>README:</strong> confirm the intended workflow, prerequisites, and supported deployment paths.</li>
+          <li><strong>LICENSE:</strong> MiroFish uses AGPL-3.0, which matters for hosted or modified deployments.</li>
+          <li><strong>docker-compose.yml:</strong> inspect services, ports, volumes, and model dependencies before running locally.</li>
+          <li><strong>.env.example:</strong> review required provider keys, database settings, model endpoints, and runtime flags.</li>
+          <li><strong>Open issues:</strong> scan installation, Docker, model-provider, and frontend/backend mismatch reports.</li>
+          <li><strong>Recent commits:</strong> check whether setup guidance matches the current source tree.</li>
+        </ol>
+      </div>
+      <aside class="panel">
+        <h2>Repository facts</h2>
+        <ul>
+          <li>Repository: 666ghj/MiroFish</li>
+          <li>Primary language: Python</li>
+          <li>Frontend stack visible in repo: Vue</li>
+          <li>License: AGPL-3.0</li>
+          <li>Setup files: Dockerfile, docker-compose.yml, .env.example</li>
+          <li>Topics include multi-agent simulation, swarm intelligence, knowledge graph, social prediction, and financial forecasting.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>Common setup questions</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Can I run MiroFish with Docker Compose?</h3>
+          <p>The repository includes Docker-related files, but you should read the current README and docker-compose.yml together. Confirm model-provider configuration and any backend service requirements before assuming a one-command production install.</p>
+        </article>
+        <article class="card">
+          <h3>Where is .env.example?</h3>
+          <p>The repository includes `.env.example`. Use it as a checklist, not as a secret store. Put real API keys only in your local environment or deployment secret manager.</p>
+        </article>
+        <article class="card">
+          <h3>Is GitHub the official source?</h3>
+          <p>For source code, yes: the public source reference is github.com/666ghj/MiroFish. For a hosted browser workflow, use the MiroFish online workspace on mirofish.best.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>Online vs self-hosted</h2>
+      <p>Use the online workspace when you want managed prediction runs and demo-style onboarding. Use GitHub when you need source review, private deployment planning, model-provider control, or license due diligence. The two paths serve different needs, and both should point back to the same MiroFish concept: multi-agent scenario simulation.</p>
+      <div class="related">
+        <a href="../mirofish-ai/">MiroFish AI</a>
+        <a href="../mirofish-how-to-use/">How to use MiroFish</a>
+        <a href="../mirofish-demo/">MiroFish demo</a>
+        <a href="../mirofish-offline/">MiroFish offline</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>MiroFish GitHub resource page.</span>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="../mirofish-ai/">AI</a>
+        <a href="../mirofish-how-to-use/">How to use</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

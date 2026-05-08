@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | MiroFish</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script defer src="/assets/analytics.js"></script>
+  <style>
+    :root {
+      --ocean: #0d1b2e;
+      --blue: #1e88e5;
+      --cyan: #00c8f0;
+      --bg: #f5faff;
+      --text: #0d1b2e;
+      --muted: #5c7a99;
+      --line: rgba(30, 136, 229, 0.16);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fcff 0%, #edf6ff 100%);
+    }
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(245, 250, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      color: inherit;
+      text-decoration: none;
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 36px; height: 36px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #2c4a68;
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.is-active {
+      color: var(--blue);
+    }
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .user-menu {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-actions .auth-pending {
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .nav-actions .auth-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #2c4a68;
+      border: 1px solid rgba(30, 136, 229, 0.2);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-actions .auth-btn:hover {
+      background: rgba(30, 136, 229, 0.06);
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+    .nav-actions .workspace-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 158px;
+      min-width: 158px;
+      min-height: 40px;
+      border-radius: 12px;
+      padding: 0 18px;
+      border: none;
+      color: #ffffff;
+      background: var(--ocean);
+      font-size: 0.875rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .nav-actions .workspace-cta:hover {
+      background: #0f2a44;
+    }
+    .nav-actions .avatar-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      min-width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 136, 229, 0.18);
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--blue), #00b4a8);
+      box-shadow: 0 8px 22px rgba(30, 136, 229, 0.2);
+      font-size: .92rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .user-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 120;
+      width: 240px;
+      border: 1px solid rgba(30, 136, 229, 0.16);
+      border-radius: 16px;
+      padding: 10px;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 18px 42px rgba(13,27,46,.16);
+    }
+    .dropdown-email {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 10px 10px 12px;
+      border-bottom: 1px solid rgba(30, 136, 229, 0.16);
+      color: #2c4a68;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+    .dropdown-action {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 40px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 8px;
+      padding: 0 10px;
+      background: transparent;
+      color: var(--text);
+      font-size: .875rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .dropdown-action:hover {
+      background: rgba(30, 136, 229, 0.07);
+      color: var(--blue);
+    }
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 112px 0 80px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--blue);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .lead { color: #294866; line-height: 1.65; max-width: 620px; margin-top: 12px; }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .order {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) minmax(120px, 0.65fr) minmax(120px, 0.65fr) auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 14px 36px rgba(13,27,46,.08);
+    }
+    .order-title { font-weight: 900; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: .86rem; line-height: 1.5; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      border-radius: 999px;
+      padding: 0 10px;
+      color: #294866;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      font-size: .8rem;
+      font-weight: 900;
+      width: fit-content;
+    }
+    .pill.running { color: #0f766e; background: #ecfdf5; border-color: rgba(13,148,136,.18); }
+    .pill.failed { color: #9f1239; background: #fff1f2; border-color: rgba(225,29,72,.18); }
+    .open {
+      min-height: 42px;
+      border-radius: 12px;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ocean);
+      background: linear-gradient(135deg, var(--cyan), #00e5ff);
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+      border: 0;
+      cursor: pointer;
+    }
+    .open[aria-disabled="true"] {
+      pointer-events: none;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--line);
+    }
+    .order-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .open.secondary {
+      color: #294866;
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+    }
+    .open.danger {
+      color: #9f1239;
+      background: #fff1f2;
+      border: 1px solid rgba(225,29,72,.18);
+    }
+    .open.danger:hover {
+      background: #ffe4e6;
+    }
+    .bind-state {
+      min-height: 42px;
+      border-radius: 12px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f766e;
+      background: #ecfdf5;
+      border: 1px solid rgba(13,148,136,.18);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .status {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,.86);
+      color: #294866;
+      line-height: 1.6;
+    }
+    .empty-state {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .empty-state span {
+      min-width: 0;
+    }
+    .empty-cta {
+      min-height: 42px;
+      border-radius: 12px;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ocean);
+      background: linear-gradient(135deg, var(--cyan), #00e5ff);
+      font-weight: 900;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    @media (max-width: 1180px) {
+      .nav-links { display: none; }
+    }
+    @media (max-width: 820px) {
+      .nav { padding: 0 20px; }
+      .user-dropdown { right: -6px; width: min(240px, calc(100vw - 32px)); }
+      .header { display: block; }
+      .order { grid-template-columns: 1fr; }
+      .empty-state { align-items: flex-start; flex-direction: column; }
+      .empty-cta { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/favicon.svg" alt="" /><span>MiroFish</span></a>
+    <div class="nav-links" aria-label="Main navigation">
+      <a href="/#features">Features</a>
+      <a href="/#workflow">How It Works</a>
+      <a href="/#use-cases">Use Cases</a>
+      <a href="/#guides">Guides</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/dashboard/" class="is-active" aria-current="page">Console</a>
+      <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">GitHub</a>
+      <a href="/#faq">Docs</a>
+    </div>
+    <div class="nav-actions">
+      <a class="workspace-cta" href="/#pricing">New Workspace</a>
+      <div class="user-menu" id="user-menu">
+        <button class="auth-btn auth-pending" id="auth-action" type="button" aria-haspopup="menu" aria-expanded="false">Sign In</button>
+        <div class="user-dropdown" id="user-dropdown" role="menu" hidden>
+          <div class="dropdown-email" id="dropdown-email"></div>
+          <button class="dropdown-action" id="signout-menu-action" type="button" role="menuitem">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script>!function(){try{var c=JSON.parse(localStorage.getItem('mirofish.auth.user')||'null');if(c&&c.email){var b=document.getElementById('auth-action');if(b){b.textContent=String(c.email).trim().charAt(0).toUpperCase()||'M';b.title=c.email;b.setAttribute('aria-label','Account menu');b.classList.add('avatar-button');b.classList.remove('auth-btn');b.classList.remove('auth-pending');}}}catch(e){}}();</script>
+
+  <main>
+    <section class="header">
+      <div>
+        <p class="eyebrow">Workspace Dashboard</p>
+        <h1>Your MiroFish instances.</h1>
+        <p class="lead" id="lead">Loading your account and workspaces...</p>
+      </div>
+    </section>
+
+    <section id="orders" class="grid">
+      <div class="status">Loading...</div>
+    </section>
+  </main>
+
+  <script>
+    const lead = document.getElementById('lead')
+    const ordersEl = document.getElementById('orders')
+    const authAction = document.getElementById('auth-action')
+    const userMenu = document.getElementById('user-menu')
+    const userDropdown = document.getElementById('user-dropdown')
+    const dropdownEmail = document.getElementById('dropdown-email')
+    const signoutMenuAction = document.getElementById('signout-menu-action')
+    const authCacheKey = 'mirofish.auth.user'
+    let signedIn = false
+    let currentUser = null
+
+    function avatarInitial(email) {
+      return String(email || 'M').trim().charAt(0).toUpperCase() || 'M'
+    }
+
+    function getCachedAuthUser() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(authCacheKey) || 'null')
+        return cached?.email ? { email: String(cached.email) } : null
+      } catch {
+        return null
+      }
+    }
+
+    function cacheAuthUser(user) {
+      if (!user?.email) return
+      localStorage.setItem(authCacheKey, JSON.stringify({ email: user.email }))
+    }
+
+    function clearCachedAuthUser() {
+      localStorage.removeItem(authCacheKey)
+    }
+
+    function setSignedInNav(user) {
+      const email = user?.email || ''
+      signedIn = true
+      currentUser = user
+      dropdownEmail.textContent = email
+      authAction.textContent = avatarInitial(email)
+      authAction.title = email
+      authAction.setAttribute('aria-label', 'Account menu')
+      authAction.classList.add('avatar-button')
+      authAction.classList.remove('auth-btn')
+      authAction.classList.remove('auth-pending')
+    }
+
+    function setSignedOutNav() {
+      signedIn = false
+      currentUser = null
+      dropdownEmail.textContent = ''
+      closeUserMenu()
+      authAction.textContent = 'Sign In'
+      authAction.title = 'Sign in'
+      authAction.setAttribute('aria-label', 'Sign in')
+      authAction.classList.add('auth-btn')
+      authAction.classList.remove('avatar-button')
+      authAction.classList.remove('auth-pending')
+    }
+
+    function closeUserMenu() {
+      userDropdown.hidden = true
+      authAction.setAttribute('aria-expanded', 'false')
+    }
+
+    function toggleUserMenu() {
+      const willOpen = userDropdown.hidden
+      userDropdown.hidden = !willOpen
+      authAction.setAttribute('aria-expanded', String(willOpen))
+    }
+
+    async function signOut() {
+      clearCachedAuthUser()
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }).catch(() => {})
+      window.location.href = '/'
+    }
+
+    function formatDate(isoStr) {
+      if (!isoStr) return ''
+      const d = new Date(isoStr)
+      if (isNaN(d)) return ''
+      return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    }
+
+    function formatMoney(amountCents, currency) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currency || 'USD',
+        minimumFractionDigits: amountCents % 100 === 0 ? 0 : 2,
+        maximumFractionDigits: amountCents % 100 === 0 ? 0 : 2,
+      }).format(amountCents / 100)
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, function (char) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]
+      })
+    }
+
+    function renderOrder(order) {
+      const status = order.instance_status || (order.payment_status === 'paid' ? 'creating' : 'pending')
+      const isRunning = status === 'running' && order.console_url
+      const href = isRunning ? order.console_url : `/console?order=${encodeURIComponent(order.id)}`
+      const bindButton = order.can_bind
+        ? `<button class="open secondary" type="button" data-bind-order="${escapeHtml(order.id)}">Bind</button>`
+        : ''
+      const deleteButton = currentUser?.isAdmin && order.instance_id && status !== 'stopped'
+        ? `<button class="open danger" type="button" data-delete-instance="${escapeHtml(order.id)}">Delete</button>`
+        : ''
+      return `
+        <article class="order">
+          <div>
+            <div class="order-title">${escapeHtml(order.order_number || order.id)}</div>
+            <div class="meta">${escapeHtml(order.plan_id || '')} · ${formatMoney(order.amount_cents || 0, order.currency)}${order.paid_at ? ' · Paid ' + formatDate(order.paid_at) : ''}</div>
+          </div>
+          <span class="pill">${escapeHtml(order.payment_status || 'pending')}</span>
+          <span class="pill ${escapeHtml(status)}">${escapeHtml(status)}</span>
+          <div class="order-actions">
+            ${bindButton}
+            ${deleteButton}
+            <a class="open" href="${escapeHtml(href)}" target="${isRunning ? '_blank' : '_self'}" rel="noopener">Open</a>
+          </div>
+        </article>
+      `
+    }
+
+    function renderEmptyState() {
+      const message = signedIn
+        ? 'No workspaces found for this account yet.'
+        : 'No unbound guest workspaces found in this browser.'
+      return `
+        <div class="status empty-state">
+          <span>${escapeHtml(message)}</span>
+          <a class="empty-cta" href="/#pricing">Choose a Plan</a>
+        </div>
+      `
+    }
+
+    async function bindOrder(orderId, button) {
+      if (!orderId || !button) return
+      const originalText = button.textContent
+      button.disabled = true
+      button.textContent = 'Binding...'
+      try {
+        const response = await fetch('/api/orders/bind-account', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ orderId }),
+        })
+        const payload = await response.json().catch(() => ({}))
+        if (!response.ok) throw new Error(payload.message || 'Could not bind this workspace.')
+        await loadDashboard()
+      } catch (error) {
+        button.disabled = false
+        button.textContent = originalText
+        ordersEl.insertAdjacentHTML(
+          'afterbegin',
+          `<div class="status">${escapeHtml(error instanceof Error ? error.message : 'Could not bind this workspace.')}</div>`,
+        )
+      }
+    }
+
+    async function deleteInstance(orderId, button) {
+      if (!orderId || !button) return
+      if (!confirm('Delete this instance? This will stop the server process and clean up files.')) return
+      const originalText = button.textContent
+      button.disabled = true
+      button.textContent = 'Deleting...'
+      try {
+        const response = await fetch(`/api/orders/${encodeURIComponent(orderId)}/instance`, {
+          method: 'DELETE',
+          credentials: 'same-origin',
+        })
+        const payload = await response.json().catch(() => ({}))
+        if (!response.ok) throw new Error(payload.message || 'Could not delete instance.')
+        await loadDashboard()
+      } catch (error) {
+        button.disabled = false
+        button.textContent = originalText
+        ordersEl.insertAdjacentHTML(
+          'afterbegin',
+          `<div class="status">${escapeHtml(error instanceof Error ? error.message : 'Could not delete instance.')}</div>`,
+        )
+      }
+    }
+
+    async function loadDashboard() {
+      const response = await fetch('/api/dashboard-data', { credentials: 'same-origin' })
+      const payload = await response.json().catch(() => ({}))
+      if (response.status === 401) {
+        clearCachedAuthUser()
+        window.location.href = `/auth/?redirect=${encodeURIComponent('/dashboard/')}`
+        return
+      }
+      if (!response.ok) throw new Error(payload.message || 'Could not load dashboard.')
+
+      signedIn = Boolean(payload.user)
+      if (signedIn) {
+        cacheAuthUser(payload.user)
+        setSignedInNav(payload.user)
+      } else {
+        clearCachedAuthUser()
+        setSignedOutNav()
+      }
+      lead.textContent = signedIn
+        ? `Signed in as ${payload.user.email}. Account instances and unbound guest workspaces from this browser appear here.`
+        : 'Unbound guest workspaces from this browser appear here. Sign in to attach them to a durable account.'
+      const orders = payload.orders || []
+      if (!orders.length) {
+        ordersEl.innerHTML = renderEmptyState()
+        return
+      }
+      const visibleOrders = orders.filter(o => o.instance_status !== 'stopped')
+      ordersEl.innerHTML = visibleOrders.length ? visibleOrders.map(renderOrder).join('') : renderEmptyState()
+    }
+
+    authAction.addEventListener('click', async function () {
+      if (!signedIn) {
+        window.location.href = `/auth/?redirect=${encodeURIComponent('/dashboard/')}`
+        return
+      }
+      toggleUserMenu()
+    })
+
+    signoutMenuAction.addEventListener('click', signOut)
+
+    document.addEventListener('click', function (event) {
+      if (userMenu.contains(event.target)) return
+      closeUserMenu()
+    })
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeUserMenu()
+    })
+
+    ordersEl.addEventListener('click', function (event) {
+      const bindButton = event.target.closest('[data-bind-order]')
+      if (bindButton) { bindOrder(bindButton.getAttribute('data-bind-order'), bindButton); return }
+      const deleteButton = event.target.closest('[data-delete-instance]')
+      if (deleteButton) deleteInstance(deleteButton.getAttribute('data-delete-instance'), deleteButton)
+    })
+
+    const cachedAuthUser = getCachedAuthUser()
+    if (cachedAuthUser) setSignedInNav(cachedAuthUser)
+
+    loadDashboard().catch(function (error) {
+      ordersEl.innerHTML = `<div class="status">${error instanceof Error ? error.message : 'Could not load dashboard.'}</div>`
+    })
+  </script>
+</body>
+</html>

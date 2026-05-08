@@ -1,0 +1,15 @@
+{
+  "name": "mirofish-b-site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "prod:inspect": "node scripts/inspect-production-analytics.mjs --d1 --skip-health",
+    "prod:inspect:remote": "node scripts/inspect-production-analytics.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.20.0",
+    "ssh2": "^1.17.0"
+  }
+}

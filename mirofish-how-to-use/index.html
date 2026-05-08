@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#eef6ff">
+  <title>MiroFish How to Use | Online Workspace, Demo, and Setup Guide</title>
+  <meta name="description" content="How to use MiroFish: prepare seed data, run a multi-agent simulation online, read the prediction report, ask follow-up questions, or inspect the GitHub self-hosting path.">
+  <meta name="keywords" content="MiroFish how to use, how to use MiroFish AI, MiroFish online, MiroFish setup, MiroFish demo, MiroFish installation guide">
+  <link rel="canonical" href="https://mirofish.best/mirofish-how-to-use/">
+  <meta property="og:title" content="MiroFish How to Use">
+  <meta property="og:description" content="A practical first-run guide for MiroFish online simulations and GitHub setup checks.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mirofish.best/mirofish-how-to-use/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="../assets/seo-pages.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "HowTo",
+        "@id": "https://mirofish.best/mirofish-how-to-use/#howto",
+        "name": "How to use MiroFish",
+        "description": "Prepare a scenario, run a MiroFish multi-agent simulation, and read the resulting prediction report.",
+        "step": [
+          { "@type": "HowToStep", "name": "Choose a scenario", "text": "Write the decision, event, policy, market signal, or story branch you want to test." },
+          { "@type": "HowToStep", "name": "Add seed material", "text": "Attach or paste the context that describes the actors, constraints, and current state." },
+          { "@type": "HowToStep", "name": "Run the simulation", "text": "Let MiroFish build the graph, create agents, and run interactions." },
+          { "@type": "HowToStep", "name": "Read the report", "text": "Review the summary, likely trajectory, risks, group reactions, and follow-up prompts." }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../">MiroFish</a>
+    <nav class="navlinks" aria-label="Guide navigation">
+      <a href="../mirofish-ai/">AI guide</a>
+      <a href="../mirofish-demo/">Demo</a>
+      <a href="../mirofish-github/">GitHub</a>
+      <a href="../mirofish-offline/">Self-host</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">MiroFish how to use</p>
+      <h1>Use MiroFish by turning one concrete scenario into a multi-agent simulation run.</h1>
+      <p class="lead">A good MiroFish run starts with a clear question and enough seed context for agents to behave differently. The goal is not to ask for a generic prediction. The goal is to rehearse a decision, watch likely reactions, and inspect why the simulation moved that way.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../#pricing">Open the MiroFish workspace</a>
+        <a class="button" href="../mirofish-demo/">Study demo reports first</a>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div class="panel">
+        <h2>First online run</h2>
+        <ol>
+          <li><strong>Write a decision-shaped prompt.</strong> Example: "If our SaaS product raises prices by 30% next quarter, how will customer sentiment, churn risk, and competitor narrative evolve?"</li>
+          <li><strong>Add seed context.</strong> Paste the relevant memo or attach a PDF, Markdown, or TXT file with product, audience, pricing, market, or policy context.</li>
+          <li><strong>Keep the time horizon explicit.</strong> Say whether you care about one week, one quarter, one year, or a multi-stage rollout.</li>
+          <li><strong>Run the simulation.</strong> MiroFish builds the scenario graph, creates agent groups, simulates interactions, and returns a structured report.</li>
+          <li><strong>Ask follow-ups.</strong> Drill into a stakeholder group, test a second variable, or compare the report against a different assumption.</li>
+        </ol>
+      </div>
+      <aside class="panel">
+        <h2>Good seed material</h2>
+        <ul>
+          <li>Product briefs and launch plans.</li>
+          <li>Policy drafts and public comments.</li>
+          <li>Market research and earnings notes.</li>
+          <li>Customer interview summaries.</li>
+          <li>News articles or social narrative snapshots.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>What to look for in the report</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Actor groups</h3>
+          <p>Check whether the report separates customers, critics, competitors, regulators, community members, creators, or investors instead of flattening everyone into one audience.</p>
+        </article>
+        <article class="card">
+          <h3>Trajectory</h3>
+          <p>Look for timing: immediate reaction, stabilization period, second-order effects, and delayed risks. MiroFish is strongest when the path matters as much as the final answer.</p>
+        </article>
+        <article class="card">
+          <h3>Actionable uncertainty</h3>
+          <p>A useful report should name weak assumptions, missing evidence, and the variables that could flip the outcome. Treat those as your next test prompts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>Self-hosting path</h2>
+      <p>If you prefer local control, inspect the MiroFish GitHub repository before deployment. Check Docker Compose, `.env.example`, model-provider settings, license terms, open issues, and the latest commit activity. The online workspace is better for quick tests; GitHub is better for source review and private infrastructure planning.</p>
+      <div class="related">
+        <a href="../mirofish-github/">MiroFish GitHub setup</a>
+        <a href="../mirofish-offline/">MiroFish offline guide</a>
+        <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">github.com/666ghj/MiroFish</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>MiroFish first-run guide.</span>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="../mirofish-ai/">AI</a>
+        <a href="../mirofish-demo/">Demo</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

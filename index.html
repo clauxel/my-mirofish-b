@@ -1,0 +1,3182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#eef6ff" />
+  <title>MiroFish AI Online Workspace | Multi-Agent Prediction Engine</title>
+  <meta name="description" content="MiroFish AI runs multi-agent prediction simulations from seed documents, market signals, policy drafts, and scenario prompts. Use the online workspace, demo reports, GitHub setup guide, and self-hosting resources from mirofish.best." />
+  <meta name="keywords" content="MiroFish, MiroFish AI, MiroFish official website, MiroFish demo, MiroFish GitHub, multi-agent prediction, swarm intelligence simulation, GraphRAG, AI prediction engine, scenario simulation" />
+  <link rel="canonical" href="https://mirofish.best/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MiroFish AI Online Workspace" />
+  <meta property="og:description" content="Run MiroFish multi-agent prediction simulations online, inspect demo reports, and follow GitHub or Docker setup paths." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mirofish.best/" />
+  <meta property="og:site_name" content="MiroFish" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@mirofish_ai" />
+  <meta name="twitter:title" content="MiroFish AI Online Workspace" />
+  <meta name="twitter:description" content="Multi-agent prediction simulation, demo reports, GitHub setup, and self-hosting resources." />
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="MiroFish" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://mirofish.best/#software",
+        "name": "MiroFish",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "AI Prediction",
+        "operatingSystem": "Web",
+        "description": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything. Next-generation AI prediction engine powered by multi-agent technology that constructs high-fidelity parallel digital worlds.",
+        "url": "https://mirofish.best/",
+        "softwareVersion": "v0.1",
+        "license": "https://github.com/666ghj/MiroFish/blob/main/LICENSE",
+        "codeRepository": "https://github.com/666ghj/MiroFish",
+        "programmingLanguage": ["Python", "Vue", "JavaScript"],
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "price": "9",
+            "priceCurrency": "USD",
+            "description": "Starter tier with 100 simulations per month"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro",
+            "price": "29",
+            "priceCurrency": "USD",
+            "billingIncrement": "1",
+            "description": "Professional tier with 500-agent simulations and API access"
+          },
+          {
+            "@type": "Offer",
+            "name": "Enterprise",
+            "price": "59",
+            "priceCurrency": "USD",
+            "billingIncrement": "1",
+            "description": "Enterprise tier with unlimited scale and dedicated support"
+          }
+        ],
+        "featureList": [
+          "Multi-agent swarm simulation",
+          "GraphRAG knowledge graph construction",
+          "Natural language prediction interface",
+          "Public opinion analysis",
+          "Financial scenario forecasting",
+          "Interactive report generation",
+          "Zero-risk decision rehearsal"
+        ],
+        "sameAs": [
+          "https://github.com/666ghj/MiroFish",
+          "https://x.com/mirofish_ai",
+          "https://www.instagram.com/mirofish_ai/"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mirofish.best/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is MiroFish?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MiroFish is a next-generation AI prediction engine powered by multi-agent swarm intelligence. It extracts seed information from real-world data, automatically constructs a high-fidelity parallel digital world with thousands of independent AI agents, and generates detailed prediction reports through natural language interaction."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does MiroFish simulate predictions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MiroFish follows a 5-step workflow: (1) Graph Building from seed data using GraphRAG, (2) Environment Setup with persona generation, (3) Multi-agent Simulation where agents freely interact, (4) Report Generation with rich analytical tools, and (5) Deep Interaction where you can chat with any simulated agent."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What can I predict with MiroFish?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MiroFish can predict public opinion shifts, financial market scenarios, policy impact analysis, social narrative evolution, and even creative story outcomes. Anything that involves human social dynamics can be simulated."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===========================
+       CSS Variables & Reset
+    =========================== */
+    :root {
+      --ocean-deep:    #08111f;
+      --ocean-dark:    #0d1b2e;
+      --ocean-mid:     #0f2a44;
+      --ocean-card:    #112d4a;
+      --ocean-border:  #1a4060;
+
+      --blue-primary:  #1e88e5;
+      --blue-bright:   #2a9de8;
+      --blue-electric: #00c8f0;
+      --cyan-glow:     #00e5ff;
+      --teal-accent:   #00b4a8;
+
+      --bg-light:      #eef6ff;
+      --bg-pale:       #f5faff;
+      --bg-section:    #f0f7fe;
+
+      --text-primary:  #0d1b2e;
+      --text-secondary:#2c4a68;
+      --text-muted:    #5a7a9a;
+      --text-light:    #ffffff;
+      --text-light-dim:#b8d4ec;
+
+      --gradient-hero: linear-gradient(135deg, #eef6ff 0%, #dbeeff 50%, #cce4ff 100%);
+      --gradient-fish: linear-gradient(135deg, #1e88e5, #00b4a8);
+      --gradient-dark: linear-gradient(135deg, #0d1b2e, #0f2a44);
+      --shadow-blue:   0 4px 24px rgba(30, 136, 229, 0.25);
+      --shadow-card:   0 2px 16px rgba(13, 27, 46, 0.08);
+      --shadow-deep:   0 8px 40px rgba(13, 27, 46, 0.15);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-pale);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+
+    /* ===========================
+       Navigation
+    =========================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(245, 250, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(30, 136, 229, 0.12);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .nav-logo svg { width: 40px; height: 26px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-primary); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-ghost {
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1px solid rgba(30, 136, 229, 0.2);
+      transition: all 0.2s;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn-ghost.auth-pending {
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .btn-ghost:hover { background: rgba(30, 136, 229, 0.06); color: var(--blue-primary); border-color: var(--blue-primary); }
+    .nav-user-menu {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-cta .avatar-button {
+      width: 42px;
+      min-width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--blue-primary), var(--teal-accent));
+      border-color: rgba(30, 136, 229, 0.18);
+      box-shadow: 0 8px 22px rgba(30, 136, 229, 0.2);
+      font-size: .92rem;
+      font-weight: 900;
+    }
+    .nav-user-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 120;
+      width: 240px;
+      border: 1px solid rgba(30, 136, 229, 0.16);
+      border-radius: 16px;
+      padding: 10px;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 18px 42px rgba(13,27,46,.16);
+    }
+    .nav-dropdown-email {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 10px 10px 12px;
+      border-bottom: 1px solid rgba(30, 136, 229, 0.16);
+      color: var(--text-secondary);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+    .nav-dropdown-action {
+      width: 100%;
+      min-height: 40px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: var(--radius-sm);
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: var(--text-primary);
+      background: transparent;
+      font-size: .875rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-dropdown-action:hover {
+      color: var(--blue-primary);
+      background: rgba(30, 136, 229, 0.07);
+    }
+
+    .btn-primary {
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--ocean-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-cta .workspace-cta {
+      justify-content: center;
+      min-height: 40px;
+      width: 158px;
+      min-width: 158px;
+      border-radius: 12px;
+      padding: 0 18px;
+      font-weight: 800;
+    }
+    .btn-primary:hover { background: var(--ocean-mid); transform: translateY(-1px); box-shadow: var(--shadow-blue); }
+
+    .btn-large {
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+    }
+
+    /* ===========================
+       Hero Section
+    =========================== */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 40px 80px;
+      background: var(--gradient-hero);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-left {}
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tag-primary {
+      background: rgba(30, 136, 229, 0.12);
+      color: var(--blue-primary);
+      border: 1px solid rgba(30, 136, 229, 0.25);
+    }
+    .tag-outline {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid rgba(13, 27, 46, 0.15);
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .hero-subline {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue-primary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-flow {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(30, 136, 229, 0.1);
+      border: 1px solid rgba(30, 136, 229, 0.2);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--blue-primary);
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+    .hero-flow span { opacity: 0.5; }
+
+    .hero-input-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-deep);
+      border: 1px solid rgba(30, 136, 229, 0.12);
+    }
+
+    .hero-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid rgba(13, 27, 46, 0.12);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      background: var(--bg-pale);
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+    .hero-input:focus { border-color: var(--blue-primary); box-shadow: 0 0 0 3px rgba(30,136,229,0.12); }
+    .hero-input::placeholder { color: var(--text-muted); }
+
+    .hero-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 0 4px;
+      margin-bottom: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-start {
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--ocean-dark);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-start:hover { background: var(--blue-primary); box-shadow: var(--shadow-blue); transform: translateY(-1px); }
+
+    .btn-examples {
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid rgba(13, 27, 46, 0.15);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-examples:hover { background: rgba(30, 136, 229, 0.06); border-color: var(--blue-primary); color: var(--blue-primary); }
+
+    .btn-attach {
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid rgba(13, 27, 46, 0.15);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-attach:hover { background: var(--bg-section); color: var(--text-secondary); }
+
+    /* Hero Right - Preview Panel */
+    .hero-right {}
+
+    .preview-panel {
+      background: var(--ocean-dark);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: 0 24px 64px rgba(8, 17, 31, 0.4);
+      border: 1px solid var(--ocean-border);
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .preview-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(0, 200, 240, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .preview-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-electric);
+    }
+
+    .sample-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .sample-card:last-child { margin-bottom: 0; }
+    .sample-card:hover { background: rgba(30, 136, 229, 0.08); border-color: rgba(30, 136, 229, 0.25); }
+
+    .sample-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(184, 212, 236, 0.5);
+      margin-bottom: 6px;
+    }
+
+    .sample-text {
+      font-size: 0.88rem;
+      color: var(--text-light-dim);
+      line-height: 1.5;
+    }
+
+    /* Feature Mini Cards below preview */
+    .hero-mini-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+    }
+
+    .mini-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    .mini-card-desc {
+      font-size: 0.75rem;
+      color: rgba(184, 212, 236, 0.7);
+      line-height: 1.5;
+    }
+
+    /* ===========================
+       Stats Bar
+    =========================== */
+    .stats-bar {
+      background: var(--ocean-dark);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-light-dim);
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cyan-glow);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ===========================
+       Section Utilities
+    =========================== */
+    .section { padding: 96px 40px; }
+    .section-alt { background: var(--bg-section); }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .section-header { margin-bottom: 60px; }
+    .section-header-center { text-align: center; }
+    .section-header-center .section-desc { margin: 0 auto; }
+
+    /* ===========================
+       Features Section
+    =========================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid rgba(30, 136, 229, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-fish);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-deep); transform: translateY(-4px); }
+    .feature-card:hover::before { transform: scaleX(1); }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(30,136,229,0.12), rgba(0,180,168,0.12));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ===========================
+       Workflow Section
+    =========================== */
+    .workflow-section {
+      background: var(--ocean-dark);
+      color: white;
+    }
+
+    .workflow-section .section-title { color: white; }
+    .workflow-section .section-desc { color: var(--text-light-dim); }
+    .workflow-section .section-label { color: var(--blue-electric); }
+
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+      margin-top: 60px;
+    }
+
+    .workflow-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(10% + 32px);
+      right: calc(10% + 32px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,200,240,0.4) 20%, rgba(0,200,240,0.4) 80%, transparent);
+    }
+
+    .workflow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--ocean-mid);
+      border: 1px solid var(--ocean-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: rgba(184, 212, 236, 0.65);
+      line-height: 1.55;
+    }
+
+    /* ===========================
+       Use Cases Section
+    =========================== */
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .usecase-card {
+      background: white;
+      border: 1px solid rgba(30, 136, 229, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .usecase-card:hover { box-shadow: var(--shadow-deep); transform: translateY(-3px); }
+
+    .usecase-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--blue-primary), var(--teal-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .usecase-content {}
+    .usecase-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .usecase-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .usecase-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(30, 136, 229, 0.1);
+      color: var(--blue-primary);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===========================
+       How It's Different
+    =========================== */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-deep);
+    }
+
+    .compare-table th {
+      padding: 18px 24px;
+      text-align: left;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .compare-table th:first-child { background: var(--bg-section); color: var(--text-secondary); }
+    .compare-table th:nth-child(2) { background: var(--bg-section); color: var(--text-secondary); }
+    .compare-table th:nth-child(3) { background: var(--ocean-dark); color: var(--blue-electric); }
+
+    .compare-table td {
+      padding: 16px 24px;
+      font-size: 0.88rem;
+      border-top: 1px solid rgba(13,27,46,0.07);
+    }
+    .compare-table tr:nth-child(odd) td { background: white; }
+    .compare-table tr:nth-child(even) td { background: var(--bg-pale); }
+    .compare-table td:nth-child(3) { background: rgba(13, 27, 46, 0.04) !important; font-weight: 600; color: var(--blue-primary); }
+    .compare-table tr:nth-child(even) td:nth-child(3) { background: rgba(13, 27, 46, 0.07) !important; }
+
+    .check { color: #22c55e; }
+    .cross { color: #ef4444; }
+    .partial { color: #f59e0b; }
+
+    /* ===========================
+       Pricing Section
+    =========================== */
+    .pricing-section {
+      padding-top: 32px;
+      padding-bottom: 72px;
+      scroll-margin-top: 72px;
+    }
+
+    .pricing-section .section-header {
+      margin-bottom: 24px;
+    }
+
+    .pricing-section .section-label {
+      margin-bottom: 8px;
+    }
+
+    .pricing-section .section-title {
+      font-size: clamp(2rem, 3vw, 2.55rem);
+      margin-bottom: 10px;
+    }
+
+    .pricing-section .section-desc {
+      font-size: 0.98rem;
+      line-height: 1.55;
+      max-width: 620px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: white;
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      border-radius: var(--radius-xl);
+      padding: 18px 24px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-deep); }
+
+    .pricing-card.featured {
+      background: var(--ocean-dark);
+      border-color: var(--blue-electric);
+      box-shadow: 0 16px 48px rgba(13, 27, 46, 0.3), 0 0 0 1px rgba(0, 200, 240, 0.3);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0, 229, 255, 0.15);
+      color: var(--cyan-glow);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+
+    .pricing-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .pricing-card:not(.featured) .pricing-name { color: var(--text-primary); }
+    .pricing-card.featured .pricing-name { color: white; }
+
+    .pricing-desc {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      min-height: 46px;
+    }
+    .pricing-card:not(.featured) .pricing-desc { color: var(--text-muted); }
+    .pricing-card.featured .pricing-desc { color: var(--text-light-dim); }
+
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .price-amount {
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .pricing-card:not(.featured) .price-amount { color: var(--text-primary); }
+    .pricing-card.featured .price-amount { color: white; }
+
+    .price-currency {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-right: 2px;
+    }
+
+    .price-period {
+      font-size: 0.85rem;
+    }
+    .pricing-card:not(.featured) .price-period { color: var(--text-muted); }
+    .pricing-card.featured .price-period { color: var(--text-light-dim); }
+
+    .pricing-features {
+      margin-bottom: 12px;
+    }
+
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 2px 0;
+      font-size: 0.8rem;
+      line-height: 1.25;
+    }
+    .pricing-card:not(.featured) .pricing-feature { color: var(--text-secondary); }
+    .pricing-card.featured .pricing-feature { color: var(--text-light-dim); }
+
+    .pricing-feature-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+    .feat-yes { background: rgba(34, 197, 94, 0.12); color: #22c55e; }
+    .feat-no  { background: rgba(13,27,46,0.06); color: var(--text-muted); }
+    .pricing-card.featured .feat-no { background: rgba(255,255,255,0.06); color: rgba(184,212,236,0.4); }
+
+    .btn-pricing {
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      border: none;
+      margin-top: auto;
+    }
+
+    .btn-pricing-outline {
+      background: transparent;
+      border: 1.5px solid rgba(30, 136, 229, 0.25);
+      color: var(--text-primary);
+    }
+    .btn-pricing-outline:hover { border-color: var(--blue-primary); color: var(--blue-primary); background: rgba(30,136,229,0.05); }
+
+    .btn-pricing-filled {
+      background: linear-gradient(135deg, var(--blue-electric), var(--cyan-glow));
+      color: var(--ocean-dark);
+    }
+    .btn-pricing-filled:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0, 229, 255, 0.35); }
+
+    .btn-pricing-dark {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      color: white;
+    }
+    .btn-pricing-dark:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+
+    .pricing-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 auto 22px;
+      max-width: 960px;
+    }
+
+    .pricing-toolbar-note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .billing-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(13, 27, 46, 0.06);
+      border: 1px solid rgba(30, 136, 229, 0.12);
+    }
+
+    .billing-chip {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .billing-chip:hover {
+      color: var(--blue-primary);
+    }
+
+    .billing-chip.is-active {
+      background: white;
+      color: var(--text-primary);
+      box-shadow: 0 10px 28px rgba(13, 27, 46, 0.1);
+    }
+
+    .billing-chip-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(0, 180, 168, 0.14);
+      color: var(--teal-accent);
+      border: 1px solid rgba(0, 180, 168, 0.18);
+    }
+
+    .pricing-card.is-selected {
+      border-color: rgba(30, 136, 229, 0.4);
+      box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.14);
+    }
+
+    .pricing-note {
+      min-height: 0;
+      margin: 0 0 10px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .pricing-card:not(.featured) .pricing-note { color: var(--text-muted); }
+    .pricing-card.featured .pricing-note { color: var(--text-light-dim); }
+
+    .launch-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(8, 17, 31, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .launch-modal-overlay[hidden] {
+      display: none !important;
+    }
+
+    .launch-modal-shell {
+      position: relative;
+      width: min(1080px, 100%);
+      max-height: min(92vh, 920px);
+      overflow: auto;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf6ff 100%);
+      border: 1px solid rgba(30, 136, 229, 0.16);
+      border-radius: 30px;
+      box-shadow: 0 32px 80px rgba(8, 17, 31, 0.28);
+      padding: 34px;
+    }
+
+    .launch-modal-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(13, 27, 46, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .launch-modal-close:hover {
+      border-color: rgba(30, 136, 229, 0.3);
+      color: var(--blue-primary);
+      transform: translateY(-1px);
+    }
+
+    .launch-modal-step[hidden] {
+      display: none;
+    }
+
+    .launch-modal-copy {
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+
+    .launch-modal-eyebrow {
+      margin-bottom: 12px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+    }
+
+    .launch-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    .launch-modal-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 760px;
+    }
+
+    .launch-billing-toggle {
+      margin-bottom: 24px;
+    }
+
+    .launch-plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .launch-plan-card {
+      width: 100%;
+      border: 1px solid rgba(30, 136, 229, 0.14);
+      border-radius: 24px;
+      background: white;
+      padding: 26px 22px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 14px 32px rgba(13, 27, 46, 0.06);
+    }
+
+    .launch-plan-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 44px rgba(13, 27, 46, 0.1);
+    }
+
+    .launch-plan-card.is-selected {
+      border-color: rgba(30, 136, 229, 0.42);
+      box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.14), 0 20px 44px rgba(13, 27, 46, 0.12);
+    }
+
+    .launch-plan-card.is-featured {
+      background: linear-gradient(180deg, #0e2138 0%, #0a182a 100%);
+      border-color: rgba(0, 229, 255, 0.25);
+    }
+
+    .launch-plan-chip-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .launch-plan-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(30, 136, 229, 0.08);
+      color: var(--blue-primary);
+      border: 1px solid rgba(30, 136, 229, 0.16);
+    }
+
+    .launch-plan-card.is-featured .launch-plan-chip {
+      background: rgba(0, 229, 255, 0.16);
+      color: var(--cyan-glow);
+      border-color: rgba(0, 229, 255, 0.22);
+    }
+
+    .launch-plan-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .launch-plan-card.is-featured .launch-plan-name,
+    .launch-plan-card.is-featured .launch-plan-desc,
+    .launch-plan-card.is-featured .launch-plan-meta,
+    .launch-plan-card.is-featured .launch-plan-feature {
+      color: white;
+    }
+
+    .launch-plan-desc {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      min-height: 58px;
+      margin-bottom: 18px;
+    }
+
+    .launch-plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .launch-plan-price-amount {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+
+    .launch-plan-card.is-featured .launch-plan-price-amount {
+      color: white;
+    }
+
+    .launch-plan-price-period {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .launch-plan-card.is-featured .launch-plan-price-period {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .launch-plan-meta {
+      min-height: 38px;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    .launch-plan-features {
+      display: grid;
+      gap: 8px;
+    }
+
+    .launch-plan-feature {
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    .launch-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(30, 136, 229, 0.12);
+    }
+
+    .launch-selection-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 6px;
+    }
+
+    .launch-selection-value {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .launch-selection-note {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .launch-footer-actions,
+    .payment-actions,
+    .launch-success-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .launch-primary-button,
+    .launch-secondary-button,
+    .launch-link-button {
+      appearance: none;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+    }
+
+    .launch-primary-button {
+      border: none;
+      color: white;
+      background: linear-gradient(135deg, #0d1b2e 0%, #1e88e5 100%);
+      box-shadow: 0 12px 32px rgba(30, 136, 229, 0.24);
+    }
+
+    .launch-primary-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px rgba(30, 136, 229, 0.3);
+    }
+
+    .launch-secondary-button {
+      border: 1px solid rgba(13, 27, 46, 0.12);
+      background: white;
+      color: var(--text-secondary);
+    }
+
+    .launch-secondary-button:hover {
+      border-color: rgba(30, 136, 229, 0.24);
+      color: var(--blue-primary);
+    }
+
+    .launch-back-link {
+      border: none;
+      background: transparent;
+      color: var(--blue-primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 18px;
+      padding: 0;
+    }
+
+    .payment-summary-card,
+    .launch-success-card {
+      border-radius: 24px;
+      background: white;
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      box-shadow: 0 14px 36px rgba(13, 27, 46, 0.08);
+      padding: 24px;
+      margin: 24px 0 18px;
+    }
+
+    .payment-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .payment-summary-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--bg-pale);
+      border: 1px solid rgba(30, 136, 229, 0.08);
+    }
+
+    .payment-summary-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .payment-summary-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .payment-status {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-radius: 18px;
+      padding: 18px 20px;
+      background: rgba(30, 136, 229, 0.06);
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .payment-status::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--blue-primary);
+      box-shadow: 0 0 0 6px rgba(30, 136, 229, 0.08);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .launch-success-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      color: #15803d;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    body.launch-modal-open {
+      overflow: hidden;
+    }
+
+    /* ===========================
+       FAQ Section
+    =========================== */
+    .faq-list { max-width: 760px; margin: 0 auto; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(30,136,229,0.1);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      gap: 20px;
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(30,136,229,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--blue-primary);
+      transition: all 0.2s;
+    }
+    .faq-item.open .faq-toggle { background: var(--blue-primary); color: white; border-color: var(--blue-primary); transform: rotate(45deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    .faq-answer-inner {
+      padding-bottom: 22px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===========================
+       CTA Section
+    =========================== */
+    .cta-section {
+      background: var(--ocean-deep);
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,136,229,0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-section .section-title { color: white; margin-bottom: 16px; }
+    .cta-section .section-desc { color: var(--text-light-dim); margin: 0 auto 40px; }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-primary {
+      padding: 15px 32px;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--blue-electric), var(--cyan-glow));
+      color: var(--ocean-dark);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-cta-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,200,240,0.4); }
+
+    .btn-cta-outline {
+      padding: 15px 32px;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 600;
+      background: transparent;
+      color: var(--text-light-dim);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-cta-outline:hover { border-color: rgba(255,255,255,0.35); color: white; }
+
+    /* ===========================
+       Footer
+    =========================== */
+    footer {
+      background: var(--ocean-deep);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 60px 40px 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      max-width: 1200px;
+      margin: 0 auto 48px;
+    }
+
+    .footer-brand {}
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: white;
+      margin-bottom: 14px;
+    }
+    .footer-logo svg { width: 36px; height: 24px; }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(184,212,236,0.6);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .footer-socials { display: flex; gap: 12px; }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(184,212,236,0.7);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: var(--blue-electric); color: var(--blue-electric); background: rgba(0,200,240,0.08); }
+
+    .footer-col-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(184,212,236,0.5);
+      margin-bottom: 16px;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(184,212,236,0.7);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--blue-electric); }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: rgba(184,212,236,0.4);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-bottom-links a {
+      font-size: 0.82rem;
+      color: rgba(184,212,236,0.4);
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: rgba(184,212,236,0.8); }
+
+    /* ===========================
+       Guide Pages Section
+    =========================== */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .guide-card {
+      min-height: 178px;
+      background: white;
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    }
+    .guide-card:hover {
+      box-shadow: var(--shadow-deep);
+      transform: translateY(-3px);
+      border-color: rgba(0, 180, 168, 0.35);
+      text-decoration: none;
+    }
+
+    .guide-card-title {
+      display: block;
+      font-size: 1rem;
+      font-weight: 750;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .guide-card-desc {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.87rem;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .guide-card-link {
+      color: var(--blue-primary);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    /* ===========================
+       Ecosystem Section
+    =========================== */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .ecosystem-card {
+      background: white;
+      border: 1px solid rgba(30, 136, 229, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+    .ecosystem-card:hover {
+      box-shadow: var(--shadow-deep);
+      transform: translateY(-3px);
+      border-color: rgba(30, 136, 229, 0.25);
+    }
+
+    .ecosystem-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(30,136,229,0.12), rgba(0,180,168,0.12));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .ecosystem-card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    .ecosystem-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .ecosystem-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--blue-primary);
+      margin-top: 6px;
+      transition: gap 0.2s;
+    }
+    .ecosystem-card-link:hover { gap: 9px; }
+
+    @media (max-width: 768px) {
+      .ecosystem-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===========================
+       Scroll Animations
+    =========================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* ===========================
+       Responsive
+    =========================== */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
+      .hero-mini-cards { display: none; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .workflow-steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .workflow-steps::before { display: none; }
+      .guides-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-section { padding-top: 48px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .pricing-card.featured { transform: none; }
+      .pricing-toolbar { flex-direction: column; align-items: stretch; }
+      .pricing-toolbar-note { text-align: left; }
+      .launch-plan-grid { grid-template-columns: 1fr; }
+      .launch-modal-footer { flex-direction: column; align-items: stretch; }
+      .launch-footer-actions { justify-content: stretch; }
+      .launch-footer-actions > * { flex: 1 1 100%; }
+      .payment-summary-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .section { padding: 64px 20px; }
+      .hero { padding: 90px 20px 48px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .usecases-grid { grid-template-columns: 1fr; }
+      .workflow-steps { grid-template-columns: 1fr; }
+      .guides-grid { grid-template-columns: 1fr; }
+      .stats-bar { gap: 28px; padding: 20px; }
+      .stat-divider { display: none; }
+      .hero-actions { flex-wrap: wrap; }
+      .compare-table { font-size: 0.82rem; display: block; overflow-x: auto; }
+      .pricing-section { padding: 40px 20px 56px; }
+      .pricing-section .section-header { margin-bottom: 22px; }
+      .pricing-toolbar { margin-top: 0; }
+      .billing-toggle { width: 100%; justify-content: space-between; }
+      .billing-chip { flex: 1 1 50%; justify-content: center; }
+      .launch-modal-overlay { padding: 12px; }
+      .launch-modal-shell { padding: 24px 18px; border-radius: 24px; }
+      .launch-modal-close { top: 14px; right: 14px; }
+      .launch-plan-card { padding: 22px 18px; }
+      .payment-actions,
+      .launch-success-actions { flex-direction: column; align-items: stretch; }
+      .payment-actions > *,
+      .launch-success-actions > * { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+  <script defer src="/assets/analytics.js"></script>
+</head>
+
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation" data-analytics-section="nav">
+    <a href="/" class="nav-logo">
+      <!-- Tech Fish SVG Logo -->
+      <svg viewBox="0 0 80 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="MiroFish logo">
+        <defs>
+          <linearGradient id="fishBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2e9de8"/>
+            <stop offset="55%" stop-color="#1a6cc4"/>
+            <stop offset="100%" stop-color="#0d3d7a"/>
+          </linearGradient>
+          <linearGradient id="finGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00d4f0"/>
+            <stop offset="100%" stop-color="#1e88e5"/>
+          </linearGradient>
+          <linearGradient id="tailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0099cc"/>
+            <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.7"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="1.2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Tail fins - flowing beta fish style -->
+        <path d="M18 26 Q4 10 10 26 Q4 42 18 26Z" fill="url(#tailGrad)" opacity="0.85"/>
+        <path d="M18 26 Q7 16 12 26 Q7 36 18 26Z" fill="url(#finGrad1)" opacity="0.7"/>
+        <!-- Ventral fin -->
+        <path d="M40 38 Q34 50 44 46 Q38 50 40 38Z" fill="url(#finGrad1)" opacity="0.65"/>
+        <!-- Dorsal fin -->
+        <path d="M34 14 Q42 4 52 12 Q46 14 40 14Z" fill="url(#finGrad1)" opacity="0.75"/>
+        <!-- Main body -->
+        <ellipse cx="44" cy="26" rx="22" ry="13" fill="url(#fishBodyGrad)"/>
+        <!-- Eye socket -->
+        <circle cx="60" cy="22" r="5" fill="#09233d"/>
+        <!-- Eye glow -->
+        <circle cx="60" cy="22" r="3.2" fill="#00d4f0" filter="url(#glow)"/>
+        <circle cx="61.2" cy="20.8" r="1.2" fill="white" opacity="0.9"/>
+        <!-- Circuit traces - horizontal line -->
+        <line x1="34" y1="24" x2="46" y2="24" stroke="#00e5ff" stroke-width="0.9" opacity="0.75"/>
+        <!-- Circuit traces - branch up -->
+        <line x1="40" y1="24" x2="40" y2="19" stroke="#00e5ff" stroke-width="0.9" opacity="0.75"/>
+        <line x1="40" y1="19" x2="48" y2="19" stroke="#00e5ff" stroke-width="0.9" opacity="0.65"/>
+        <!-- Circuit traces - branch down -->
+        <line x1="36" y1="24" x2="36" y2="30" stroke="#74b9ff" stroke-width="0.8" opacity="0.6"/>
+        <line x1="36" y1="30" x2="43" y2="30" stroke="#74b9ff" stroke-width="0.8" opacity="0.6"/>
+        <!-- Circuit nodes -->
+        <circle cx="34" cy="24" r="1.5" fill="#00e5ff" opacity="0.9"/>
+        <circle cx="40" cy="19" r="1.5" fill="#00e5ff" opacity="0.9"/>
+        <circle cx="48" cy="19" r="1.5" fill="#00e5ff" opacity="0.8" filter="url(#glow)"/>
+        <circle cx="36" cy="30" r="1.3" fill="#74b9ff" opacity="0.85"/>
+        <circle cx="43" cy="30" r="1.3" fill="#74b9ff" opacity="0.85"/>
+        <!-- Scales hint -->
+        <path d="M44 20 Q48 18 52 20" stroke="rgba(255,255,255,0.18)" stroke-width="0.8" fill="none"/>
+        <path d="M40 23 Q44 21 48 23" stroke="rgba(255,255,255,0.15)" stroke-width="0.8" fill="none"/>
+        <path d="M42 28 Q46 26 50 28" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" fill="none"/>
+      </svg>
+      MiroFish
+    </a>
+
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#workflow">How It Works</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#guides">Guides</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/dashboard/" id="console-menu-link">Console</a>
+      <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">GitHub</a>
+      <a href="#faq">Docs</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="#pricing" class="btn-primary workspace-cta" data-launch-open data-launch-source="nav_cta" data-launch-plan="starter" data-launch-billing="annual" data-analytics-click="new_workspace" data-analytics-cta="true">
+        New Workspace
+      </a>
+      <div class="nav-user-menu" id="nav-user-menu">
+        <button class="btn-ghost auth-pending" id="signin-button" onclick="window.location='/auth/'" aria-haspopup="menu" aria-expanded="false">Sign In</button>
+        <div class="nav-user-dropdown" id="nav-user-dropdown" role="menu" hidden>
+          <div class="nav-dropdown-email" id="nav-dropdown-email"></div>
+          <button class="nav-dropdown-action" id="nav-signout-action" type="button" role="menuitem">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script>!function(){try{var c=JSON.parse(localStorage.getItem('mirofish.auth.user')||'null');if(c&&c.email){var b=document.getElementById('signin-button');if(b){b.textContent=String(c.email).trim().charAt(0).toUpperCase()||'M';b.title=c.email;b.setAttribute('aria-label','Account menu');b.classList.add('avatar-button');b.classList.remove('auth-pending');}}}catch(e){}}();</script>
+
+  <!-- ===================== HERO ===================== -->
+  <main>
+    <section class="hero" aria-labelledby="hero-heading" data-analytics-section="hero">
+      <div class="hero-left">
+        <div class="hero-tags">
+          <span class="tag tag-primary">MiroFish AI Online</span>
+          <span class="tag tag-outline">Multi-agent simulation</span>
+          <span class="tag tag-outline">GitHub + Docker ready</span>
+          <span class="tag tag-outline">Demo reports included</span>
+        </div>
+
+        <p class="hero-subline">Official MiroFish AI workspace for scenario prediction</p>
+
+        <h1 class="hero-headline" id="hero-heading">
+          MiroFish AI:<br>run multi-agent<br>prediction simulations.
+        </h1>
+
+        <p class="hero-desc">
+          Turn seed documents, market signals, policy drafts, or plain scenario prompts into
+          <span class="hero-flow">seed <span>→</span> simulation <span>→</span> report</span>
+          workflows. MiroFish creates agent personas, runs social dynamics forward, and returns structured prediction reports you can inspect and discuss.
+        </p>
+
+        <div class="hero-input-box">
+          <input
+            class="hero-input"
+            type="text"
+            placeholder="Ask a MiroFish prediction question or drop a PDF / MD / TXT file"
+            aria-label="Enter your prediction question"
+          />
+          <p class="hero-hint">
+            Example: If a product raises its price next quarter, how will customer sentiment and narrative spread change?
+          </p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn-start" data-launch-open data-launch-source="hero_cta" data-launch-plan="pro" data-launch-billing="annual" data-analytics-click="start_simulation" data-analytics-cta="true">
+              Start MiroFish
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn-examples" href="/mirofish-demo/">View Demo Reports</a>
+            <button class="btn-attach">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 7L7 4 4 7M7 4v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/></svg>
+              Attach Files
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="preview-panel">
+          <div class="preview-header">
+            <div class="preview-icon">⚙</div>
+            <div class="preview-title">Orchestration Preview</div>
+          </div>
+
+          <div class="sample-card">
+            <div class="sample-label">Sample 1</div>
+            <div class="sample-text">If a product raises its price next quarter, how will customer sentiment and narrative spread evolve?</div>
+          </div>
+
+          <div class="sample-card">
+            <div class="sample-label">Sample 2</div>
+            <div class="sample-text">If a brand suddenly changes its spokesperson, how might public opinion move?</div>
+          </div>
+
+          <div class="sample-card">
+            <div class="sample-label">Sample 3</div>
+            <div class="sample-text">If a policy enters public debate, which groups are likely to support or oppose it first?</div>
+          </div>
+
+          <div class="hero-mini-cards">
+            <div class="mini-card">
+              <div class="mini-card-title">Text-first</div>
+              <div class="mini-card-desc">Start with a question, decide whether supporting files are needed without losing chat speed.</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">Multi-agent</div>
+              <div class="mini-card-desc">Run graph building, simulation, and reporting in the background inside one conversation.</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">Result cards</div>
+              <div class="mini-card-desc">Structured result card dropped below each answer with summary, report, and follow-up path.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS BAR ===================== -->
+    <div class="stats-bar" role="complementary" aria-label="Project statistics">
+      <div class="stat-item">
+        <span class="stat-value">59k+</span>
+        <span class="stat-label">GitHub Stars</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">9.2k+</span>
+        <span class="stat-label">Forks</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">Python</span>
+        <span class="stat-label">Primary Language</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">Docker</span>
+        <span class="stat-label">Self-host Path</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">AGPL-3.0</span>
+        <span class="stat-label">Open Source</span>
+      </div>
+    </div>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section id="features" class="section" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">Core Capabilities</div>
+          <h2 class="section-title" id="features-heading">Everything you need to<br>simulate the future</h2>
+          <p class="section-desc">MiroFish combines swarm intelligence, knowledge graphs, and multi-agent LLMs into a unified prediction platform accessible through natural language.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card fade-up">
+            <div class="feature-icon">🧠</div>
+            <h3 class="feature-title">Multi-Agent Swarm Intelligence</h3>
+            <p class="feature-desc">Thousands of independent AI agents with unique personalities, long-term memory, and behavioral logic freely interact in a simulated social environment — producing emergent collective behavior impossible with single-model approaches.</p>
+          </div>
+          <div class="feature-card fade-up fade-up-delay-1">
+            <div class="feature-icon">🕸</div>
+            <h3 class="feature-title">GraphRAG Knowledge Graphs</h3>
+            <p class="feature-desc">Automatically extract entity relationships from seed documents and construct a high-fidelity knowledge graph. GraphRAG powers agent memory, enabling coherent reasoning across thousands of simulated interactions.</p>
+          </div>
+          <div class="feature-card fade-up fade-up-delay-2">
+            <div class="feature-icon">💬</div>
+            <h3 class="feature-title">Natural Language Interface</h3>
+            <p class="feature-desc">No complex UX. Describe your scenario in plain language —MiroFish handles seed extraction, simulation setup, and report generation automatically. The entire seed → simulation → report pipeline runs in one conversation.</p>
+          </div>
+          <div class="feature-card fade-up fade-up-delay-1">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Structured Prediction Reports</h3>
+            <p class="feature-desc">Every simulation produces a richly formatted report: narrative analysis, group dynamics, probability estimates, and timeline projections — with follow-up paths to drill deeper into any finding.</p>
+          </div>
+          <div class="feature-card fade-up fade-up-delay-2">
+            <div class="feature-icon">🔮</div>
+            <h3 class="feature-title">God's-Eye Variable Injection</h3>
+            <p class="feature-desc">Intervene dynamically mid-simulation — inject new variables, policy changes, or external shocks from a God's-eye view. Watch how the digital world recalibrates in real time without resetting the entire simulation.</p>
+          </div>
+          <div class="feature-card fade-up fade-up-delay-3">
+            <div class="feature-icon">🗣</div>
+            <h3 class="feature-title">Deep Agent Interaction</h3>
+            <p class="feature-desc">After simulation, interview any agent directly. Ask the "public" representative about their concerns, probe the "skeptic" faction for counterarguments, or query the ReportAgent for deeper statistical breakdowns.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORKFLOW ===================== -->
+    <section id="workflow" class="section workflow-section" aria-labelledby="workflow-heading">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">How It Works</div>
+          <h2 class="section-title" id="workflow-heading">From seed to simulation<br>in five steps</h2>
+          <p class="section-desc">MiroFish's orchestration engine handles the full prediction pipeline automatically. You provide the question; the swarm finds the answer.</p>
+        </div>
+
+        <div class="workflow-steps">
+          <div class="workflow-step fade-up">
+            <div class="step-number">🌱</div>
+            <div class="step-title">Graph Building</div>
+            <div class="step-desc">Seed extraction, individual & collective memory injection, and GraphRAG knowledge graph construction.</div>
+          </div>
+          <div class="workflow-step fade-up fade-up-delay-1">
+            <div class="step-number">⚙</div>
+            <div class="step-title">Environment Setup</div>
+            <div class="step-desc">Entity relationship extraction, persona generation, and AI agent configuration injection.</div>
+          </div>
+          <div class="workflow-step fade-up fade-up-delay-2">
+            <div class="step-number">🔁</div>
+            <div class="step-title">Simulation</div>
+            <div class="step-desc">Dual-platform parallel simulation with dynamic temporal memory updates across thousands of agents.</div>
+          </div>
+          <div class="workflow-step fade-up fade-up-delay-3">
+            <div class="step-number">📋</div>
+            <div class="step-title">Report Generation</div>
+            <div class="step-desc">ReportAgent analyzes post-simulation state with a rich analytical toolset to produce structured findings.</div>
+          </div>
+          <div class="workflow-step fade-up fade-up-delay-4">
+            <div class="step-number">💡</div>
+            <div class="step-title">Deep Interaction</div>
+            <div class="step-desc">Chat with any simulated agent or the ReportAgent to explore findings and iterate on scenarios.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== USE CASES ===================== -->
+    <section id="use-cases" class="section" aria-labelledby="usecases-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Applications</div>
+          <h2 class="section-title" id="usecases-heading">Predict what matters to you</h2>
+          <p class="section-desc">From enterprise decision-making to creative exploration — MiroFish adapts to any prediction challenge that involves human social dynamics.</p>
+        </div>
+
+        <div class="usecases-grid">
+          <div class="usecase-card fade-up">
+            <div class="usecase-icon" aria-hidden="true">📣</div>
+            <div class="usecase-content">
+              <h3 class="usecase-title">Public Opinion & Crisis Management</h3>
+              <p class="usecase-desc">Simulate how news events, brand crises, or policy announcements spread through social groups. Identify narrative leaders, opposition clusters, and sentiment inflection points before they happen.</p>
+              <span class="usecase-tag">PR & Communications</span>
+            </div>
+          </div>
+
+          <div class="usecase-card fade-up fade-up-delay-1">
+            <div class="usecase-icon" aria-hidden="true">📈</div>
+            <div class="usecase-content">
+              <h3 class="usecase-title">Financial Scenario Forecasting</h3>
+              <p class="usecase-desc">Model market sentiment dynamics following earnings reports, regulatory changes, or macro signals. Simulate investor behavior clusters and forecast narrative-driven price movements.</p>
+              <span class="usecase-tag">Finance & Investing</span>
+            </div>
+          </div>
+
+          <div class="usecase-card fade-up fade-up-delay-2">
+            <div class="usecase-icon" aria-hidden="true">🏛</div>
+            <div class="usecase-content">
+              <h3 class="usecase-title">Policy Impact Testing</h3>
+              <p class="usecase-desc">Test public policy drafts at zero risk. Simulate how diverse demographic groups respond — which factions champion the policy, which resist, and how the debate evolves over time.</p>
+              <span class="usecase-tag">Government & Policy</span>
+            </div>
+          </div>
+
+          <div class="usecase-card fade-up fade-up-delay-3">
+            <div class="usecase-icon" aria-hidden="true">✍</div>
+            <div class="usecase-content">
+              <h3 class="usecase-title">Creative Narrative Exploration</h3>
+              <p class="usecase-desc">Explore "what if" story branches, deduce missing narrative endings, or simulate how fictional societies would evolve. Used to complete the lost ending of Dream of the Red Chamber.</p>
+              <span class="usecase-tag">Writers & Creators</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COMPARISON TABLE ===================== -->
+    <section class="section section-alt" aria-labelledby="compare-heading">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">Why MiroFish</div>
+          <h2 class="section-title" id="compare-heading">Beyond traditional forecasting</h2>
+          <p class="section-desc">Most prediction tools give you statistical extrapolation. MiroFish gives you a living simulation.</p>
+        </div>
+
+        <table class="compare-table fade-up" role="table" aria-label="Feature comparison">
+          <thead>
+            <tr>
+              <th scope="col">Capability</th>
+              <th scope="col">Traditional Analytics</th>
+              <th scope="col">MiroFish</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Natural language input</td>
+              <td><span class="cross">✗</span> Requires structured data</td>
+              <td><span class="check">✓</span> Full NL conversation</td>
+            </tr>
+            <tr>
+              <td>Agent personality modeling</td>
+              <td><span class="cross">✗</span> Not supported</td>
+              <td><span class="check">✓</span> Thousands of unique agents</td>
+            </tr>
+            <tr>
+              <td>Emergent social dynamics</td>
+              <td><span class="partial">~</span> Statistical proxies only</td>
+              <td><span class="check">✓</span> Organic agent emergence</td>
+            </tr>
+            <tr>
+              <td>Mid-simulation variable injection</td>
+              <td><span class="cross">✗</span> Re-run required</td>
+              <td><span class="check">✓</span> Real-time intervention</td>
+            </tr>
+            <tr>
+              <td>Post-simulation agent interview</td>
+              <td><span class="cross">✗</span> Not possible</td>
+              <td><span class="check">✓</span> Direct agent dialogue</td>
+            </tr>
+            <tr>
+              <td>GraphRAG knowledge graph</td>
+              <td><span class="partial">~</span> Basic embeddings</td>
+              <td><span class="check">✓</span> Full entity–relationship graph</td>
+            </tr>
+            <tr>
+              <td>Open source & self-hostable</td>
+              <td><span class="cross">✗</span> Mostly proprietary</td>
+              <td><span class="check">✓</span> AGPL-3.0 / Docker ready</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== GUIDES ===================== -->
+    <section id="guides" class="section section-alt" aria-labelledby="guides-heading">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">Guides</div>
+          <h2 class="section-title" id="guides-heading">Choose your next step</h2>
+          <p class="section-desc">Practical paths for understanding MiroFish, running your first simulation, evaluating self-hosted use, and browsing related reference resources.</p>
+        </div>
+
+        <div class="guides-grid">
+          <a class="guide-card fade-up" href="/mirofish-ai/">
+            <span>
+              <span class="guide-card-title">MiroFish AI</span>
+              <span class="guide-card-desc">What the AI prediction engine does and where multi-agent simulation fits.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-1" href="/gpt-5-5-instant/">
+            <span>
+              <span class="guide-card-title">GPT-5.5 Instant</span>
+              <span class="guide-card-desc">How to use GPT-5.5 Instant for faster MiroFish scenario runs and model evaluation.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-1" href="/mirofish-english/">
+            <span>
+              <span class="guide-card-title">MiroFish English</span>
+              <span class="guide-card-desc">English overview, setup path, and practical resources for new users.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-2" href="/mirofish-trading/">
+            <span>
+              <span class="guide-card-title">MiroFish trading</span>
+              <span class="guide-card-desc">Trading research, market narratives, sentiment shifts, and risk rehearsal.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up" href="/mirofish-how-to-use/">
+            <span>
+              <span class="guide-card-title">MiroFish how to use</span>
+              <span class="guide-card-desc">Step-by-step first run: seed, graph, simulation, report, and follow-up.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-1" href="/mirofish-offline/">
+            <span>
+              <span class="guide-card-title">MiroFish-Offline</span>
+              <span class="guide-card-desc">Self-hosting, private deployment, and what fully offline really requires.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-2" href="/mirofish-github/">
+            <span>
+              <span class="guide-card-title">MiroFish GitHub</span>
+              <span class="guide-card-desc">Repository link, source checks, license signals, and install expectations.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up" href="/mirofish-founder/">
+            <span>
+              <span class="guide-card-title">MiroFish founder</span>
+              <span class="guide-card-desc">How to verify founder, maintainer, company, and repository attribution.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-1" href="/mirofish-polymarket/">
+            <span>
+              <span class="guide-card-title">MiroFish Polymarket</span>
+              <span class="guide-card-desc">Prediction-market narrative research and Polymarket-style scenario analysis.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+
+          <a class="guide-card fade-up fade-up-delay-2" href="/mirofish-demo/">
+            <span>
+              <span class="guide-card-title">MiroFish demo</span>
+              <span class="guide-card-desc">See realistic prediction reports for pricing, policy, market narrative, and launch scenarios.</span>
+            </span>
+            <span class="guide-card-link">Open guide -></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section id="pricing" class="section pricing-section" aria-labelledby="pricing-heading" data-analytics-section="pricing">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">Pricing</div>
+          <h2 class="section-title" id="pricing-heading">Start lean, scale as you grow</h2>
+          <p class="section-desc">Every plan includes access to the full MiroFish prediction engine. No simulation limits on self-hosted deployments.</p>
+        </div>
+
+        <div class="pricing-toolbar">
+          <div class="billing-toggle" role="tablist" aria-label="Choose monthly or yearly billing">
+            <button type="button" class="billing-chip" data-billing-option="monthly" aria-pressed="false">Monthly</button>
+            <button type="button" class="billing-chip is-active" data-billing-option="annual" aria-pressed="true">
+              Yearly
+              <span class="billing-chip-badge">50% off</span>
+            </button>
+          </div>
+          <p class="pricing-toolbar-note">Save 50% on Pro when you switch to yearly billing.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Starter -->
+          <div class="pricing-card fade-up" data-pricing-plan="starter">
+            <div class="pricing-name">Starter</div>
+            <p class="pricing-desc">Perfect for individuals exploring AI-driven scenario prediction for the first time.</p>
+            <div class="pricing-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount" data-plan-price-amount="starter">9</span>
+              <span class="price-period" data-plan-price-period="starter">/ month</span>
+            </div>
+            <p class="pricing-note" data-plan-price-note="starter">$9 charged monthly for lightweight exploration.</p>
+            <ul class="pricing-features" aria-label="Starter plan features">
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                100 simulations per month
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Up to 50 agents per simulation
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Basic prediction reports
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Text file seed uploads
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-no">—</span>
+                API access
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-no">—</span>
+                Variable injection mid-sim
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-no">—</span>
+                Priority processing
+              </li>
+            </ul>
+            <button type="button" class="btn-pricing btn-pricing-outline" data-pricing-action="starter">Continue with Starter</button>
+          </div>
+
+          <!-- Pro -->
+          <div class="pricing-card featured fade-up fade-up-delay-1" aria-label="Recommended plan" data-pricing-plan="pro">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-name">Pro</div>
+            <p class="pricing-desc">For analysts, researchers, and product teams running regular prediction workflows.</p>
+            <div class="pricing-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount" data-plan-price-amount="pro">14.50</span>
+              <span class="price-period" data-plan-price-period="pro">/ mo billed yearly</span>
+            </div>
+            <p class="pricing-note" data-plan-price-note="pro">$174 charged yearly. Save 50% on every annual renewal.</p>
+            <ul class="pricing-features" aria-label="Pro plan features">
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                500 simulations per month
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Up to 500 agents per simulation
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Advanced structured reports
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                PDF, MD, TXT seed uploads
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Full REST API access
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Mid-simulation variable injection
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-no">—</span>
+                Custom deployment
+              </li>
+            </ul>
+            <button type="button" class="btn-pricing btn-pricing-filled" data-pricing-action="pro">Continue with Pro</button>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="pricing-card fade-up fade-up-delay-2" data-pricing-plan="enterprise">
+            <div class="pricing-name">Enterprise</div>
+            <p class="pricing-desc">For organizations needing unlimited scale, custom integrations, and dedicated support.</p>
+            <div class="pricing-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount" data-plan-price-amount="enterprise">59</span>
+              <span class="price-period" data-plan-price-period="enterprise">/ month</span>
+            </div>
+            <p class="pricing-note" data-plan-price-note="enterprise">$59 charged monthly for high-scale teams.</p>
+            <ul class="pricing-features" aria-label="Enterprise plan features">
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Unlimited simulations
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Unlimited agent count
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                White-label deployment
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                On-premise / private cloud
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Custom LLM model integration
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                Dedicated success engineer
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon feat-yes">✓</span>
+                SLA & compliance support
+              </li>
+            </ul>
+            <button type="button" class="btn-pricing btn-pricing-outline" data-pricing-action="enterprise">Continue with Enterprise</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="section section-alt" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">FAQ</div>
+          <h2 class="section-title" id="faq-heading">Common questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item open">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="true">
+              What exactly is MiroFish and how does it differ from ChatGPT?
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer" aria-hidden="false">
+              <p class="faq-answer-inner">MiroFish is not a single-model chatbot — it's a multi-agent simulation engine. Where ChatGPT generates a single AI response, MiroFish spawns thousands of independent AI agents representing different personas, lets them interact organically, and synthesizes the emergent collective behavior into a structured prediction report. You get a simulated society, not just a chatbot answer.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+              What kind of seed data does MiroFish accept?
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer" aria-hidden="true">
+              <p class="faq-answer-inner">MiroFish accepts plain text input (typed directly), as well as uploaded files in PDF, Markdown (.md), and TXT formats. Seed content can be news articles, policy drafts, financial reports, research papers, or even novel chapters. The engine extracts entities and relationships automatically via GraphRAG.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+              Which LLM providers does MiroFish support?
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer" aria-hidden="true">
+              <p class="faq-answer-inner">MiroFish supports any LLM API that follows the OpenAI SDK format, including GPT-5.5 Instant, OpenAI GPT-4, Alibaba Qwen, Anthropic Claude, and local models via compatible proxies. Use GPT-5.5 Instant when you want fast cloud runs for scenario drafting, report iteration, and follow-up chat. Self-hosted plans can still use your own provider key.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+              How long does a simulation take to run?
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer" aria-hidden="true">
+              <p class="faq-answer-inner">Simulation time depends on agent count and round count. A 20-agent, 20-round simulation typically completes in 5–10 minutes. Larger simulations (500+ agents, 80+ rounds) can take 30–60 minutes. Pro and Enterprise plans benefit from parallel processing infrastructure that significantly reduces wall-clock time.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+              Can I self-host MiroFish?
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer" aria-hidden="true">
+              <p class="faq-answer-inner">Yes. MiroFish is fully open source under the AGPL-3.0 license. You can deploy it yourself using source code (Node.js 18+ frontend, Python 3.11–3.12 backend) or via Docker Compose with a single command. Self-hosted deployments have no agent or simulation limits beyond your own compute resources.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+              Is MiroFish suitable for enterprise use?
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer" aria-hidden="true">
+              <p class="faq-answer-inner">Yes. MiroFish is incubated by Shanda Group and used in production for public opinion analysis, policy testing, and financial scenario modeling. Enterprise is now available as a $59 plan from the pricing table, with private cloud / on-premise deployment, custom LLM integration, white-labeling, SLA guarantees, and dedicated engineering support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="cta-section" aria-labelledby="cta-heading" data-analytics-section="cta">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:1;">
+        <div class="section-label" style="color:var(--blue-electric);">Get Started Today</div>
+        <h2 class="section-title" id="cta-heading">
+          Rehearse the future.<br>Win every decision.
+        </h2>
+        <p class="section-desc">
+          Join researchers, analysts, and strategists who use MiroFish to simulate outcomes before they commit. Pick a plan and continue on the MiroFish checkout page.
+        </p>
+        <div class="cta-buttons">
+          <a href="#pricing" class="btn-cta-primary" data-launch-open data-launch-source="bottom_cta" data-launch-plan="starter" data-launch-billing="annual" data-analytics-click="start_starter_simulation" data-analytics-cta="true">
+            Start $9 Simulation
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener" class="btn-cta-outline">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 3.31 2.15 6.12 5.12 7.11.37.07.51-.16.51-.36v-1.27c-2.08.45-2.52-.99-2.52-.99-.34-.86-.83-1.09-.83-1.09-.68-.46.05-.45.05-.45.75.05 1.15.77 1.15.77.67 1.14 1.75.81 2.18.62.07-.48.26-.81.47-.99-1.66-.19-3.41-.83-3.41-3.69 0-.82.29-1.48.77-2-.08-.19-.33-.95.07-1.98 0 0 .63-.2 2.06.77A7.19 7.19 0 0 1 9 5.83c.64 0 1.28.09 1.88.25 1.43-.97 2.06-.77 2.06-.77.4 1.03.15 1.79.07 1.98.48.52.77 1.18.77 2 0 2.87-1.75 3.5-3.42 3.68.27.23.51.68.51 1.37v2.04c0 .2.14.44.51.36A7.5 7.5 0 0 0 16.5 9c0-4.14-3.36-7.5-7.5-7.5Z" fill="currentColor"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ECOSYSTEM ===================== -->
+    <section class="section section-alt" aria-labelledby="ecosystem-heading">
+      <div class="container">
+        <div class="section-header section-header-center">
+          <div class="section-label">From the Same Team</div>
+          <h2 class="section-title" id="ecosystem-heading">Also built for AI builders</h2>
+          <p class="section-desc">MiroFish is part of a growing ecosystem of agent-first tools for researchers, operators, and product builders.</p>
+        </div>
+
+        <div class="ecosystem-grid">
+          <div class="ecosystem-card fade-up">
+            <div class="ecosystem-card-icon">🚀</div>
+            <div class="ecosystem-card-name">OpenClaw</div>
+            <p class="ecosystem-card-desc">OpenClaw Launch — One-click OpenClaw deployment. Go from zero to production in minutes without DevOps complexity.</p>
+            <a href="https://www.aigeamy.com/" target="_blank" rel="noopener" class="ecosystem-card-link">
+              aigeamy.com
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div class="ecosystem-card fade-up fade-up-delay-1">
+            <div class="ecosystem-card-icon">🧠</div>
+            <div class="ecosystem-card-name">Hermes Agent</div>
+            <p class="ecosystem-card-desc">Not a Chat. A Persistent Agent That Remembers, Acts, and Improves. Built for workflows that never stop.</p>
+            <a href="https://hermesagent.studio/" target="_blank" rel="noopener" class="ecosystem-card-link">
+              hermesagent.studio
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div class="ecosystem-card fade-up fade-up-delay-2">
+            <div class="ecosystem-card-icon">🤝</div>
+            <div class="ecosystem-card-name">Multica</div>
+            <p class="ecosystem-card-desc">Multica — Multi-Agent Collaboration for Real Workflows. Orchestrate teams of specialized agents to tackle complex, long-running tasks.</p>
+            <a href="https://www.multica.uk/" target="_blank" rel="noopener" class="ecosystem-card-link">
+              multica.uk
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 80 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="ff1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2e9de8"/><stop offset="100%" stop-color="#0d3d7a"/></linearGradient>
+              <linearGradient id="ff2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4f0"/><stop offset="100%" stop-color="#1e88e5"/></linearGradient>
+            </defs>
+            <path d="M18 26 Q4 10 10 26 Q4 42 18 26Z" fill="url(#ff2)" opacity="0.8"/>
+            <path d="M34 14 Q42 4 52 12 Q46 14 40 14Z" fill="url(#ff2)" opacity="0.7"/>
+            <ellipse cx="44" cy="26" rx="22" ry="13" fill="url(#ff1)"/>
+            <circle cx="60" cy="22" r="5" fill="#09233d"/>
+            <circle cx="60" cy="22" r="3" fill="#00d4f0"/>
+            <circle cx="61.2" cy="20.8" r="1.1" fill="white" opacity="0.9"/>
+            <line x1="34" y1="24" x2="46" y2="24" stroke="#00e5ff" stroke-width="0.9" opacity="0.7"/>
+            <line x1="40" y1="24" x2="40" y2="19" stroke="#00e5ff" stroke-width="0.9" opacity="0.7"/>
+            <line x1="40" y1="19" x2="48" y2="19" stroke="#00e5ff" stroke-width="0.9" opacity="0.6"/>
+            <circle cx="34" cy="24" r="1.4" fill="#00e5ff" opacity="0.85"/>
+            <circle cx="48" cy="19" r="1.4" fill="#00e5ff" opacity="0.85"/>
+          </svg>
+          MiroFish
+        </div>
+        <p class="footer-tagline">A Simple and Universal Swarm Intelligence Engine, Predicting Anything.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 3.31 2.15 6.12 5.12 7.11.37.07.51-.16.51-.36v-1.27c-2.08.45-2.52-.99-2.52-.99-.34-.86-.83-1.09-.83-1.09-.68-.46.05-.45.05-.45.75.05 1.15.77 1.15.77.67 1.14 1.75.81 2.18.62.07-.48.26-.81.47-.99-1.66-.19-3.41-.83-3.41-3.69 0-.82.29-1.48.77-2-.08-.19-.33-.95.07-1.98 0 0 .63-.2 2.06.77A7.19 7.19 0 0 1 9 5.83c.64 0 1.28.09 1.88.25 1.43-.97 2.06-.77 2.06-.77.4 1.03.15 1.79.07 1.98.48.52.77 1.18.77 2 0 2.87-1.75 3.5-3.42 3.68.27.23.51.68.51 1.37v2.04c0 .2.14.44.51.36A7.5 7.5 0 0 0 16.5 9c0-4.14-3.36-7.5-7.5-7.5Z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://x.com/mirofish_ai" target="_blank" rel="noopener" class="social-btn" aria-label="X / Twitter">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M10.85.88H12.9L8.55 5.87 13.67 13.12H9.7L6.62 8.9 3.08 13.12H1.02L5.67 7.77.83.88H4.91L7.68 4.73ZM10.1 11.85H11.27L4.44 2.09H3.19Z"/></svg>
+          </a>
+          <a href="https://discord.gg/ePf5aPaHnA" target="_blank" rel="noopener" class="social-btn" aria-label="Discord">
+            <svg width="15" height="14" viewBox="0 0 20 14" fill="currentColor"><path d="M16.93 1.18A16.5 16.5 0 0 0 12.85 0a.1.1 0 0 0-.1.05c-.17.31-.36.72-.5 1.04a15.24 15.24 0 0 0-4.5 0A10.67 10.67 0 0 0 7.25.05.1.1 0 0 0 7.15 0a16.47 16.47 0 0 0-4.08 1.18A.09.09 0 0 0 3.03 1.22C.44 5.1-.27 8.87.08 12.59a.1.1 0 0 0 .04.07 16.6 16.6 0 0 0 4.98 2.49.1.1 0 0 0 .11-.04c.38-.52.72-1.08 1.01-1.66a.1.1 0 0 0-.05-.14 10.93 10.93 0 0 1-1.55-.73.1.1 0 0 1-.01-.17c.1-.08.21-.16.31-.24a.1.1 0 0 1 .1-.01c3.25 1.47 6.77 1.47 9.98 0a.1.1 0 0 1 .1.01c.1.08.2.16.31.24a.1.1 0 0 1-.01.17c-.5.29-1.02.53-1.55.73a.1.1 0 0 0-.05.14c.3.58.64 1.14 1.01 1.66a.1.1 0 0 0 .11.04 16.55 16.55 0 0 0 5-2.49.1.1 0 0 0 .04-.07c.42-4.3-.7-8.04-2.96-11.37a.08.08 0 0 0-.04-.04ZM6.68 10.34c-.97 0-1.77-.88-1.77-1.97s.78-1.97 1.77-1.97c1 0 1.79.89 1.77 1.97 0 1.09-.78 1.97-1.77 1.97Zm6.55 0c-.97 0-1.77-.88-1.77-1.97s.78-1.97 1.77-1.97c1 0 1.79.89 1.77 1.97 0 1.09-.77 1.97-1.77 1.97Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/mirofish_ai/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#workflow">How It Works</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="/mirofish-demo/">Live Demo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Developers</div>
+        <ul class="footer-links">
+          <li><a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/666ghj/MiroFish/blob/main/README.md" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://github.com/666ghj/MiroFish/releases" target="_blank" rel="noopener">Releases</a></li>
+          <li><a href="https://deepwiki.com/666ghj/MiroFish" target="_blank" rel="noopener">DeepWiki</a></li>
+          <li><a href="https://github.com/666ghj/MiroFish/issues" target="_blank" rel="noopener">Issues</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Guides</div>
+        <ul class="footer-links">
+          <li><a href="/mirofish-ai/">MiroFish AI</a></li>
+          <li><a href="/gpt-5-5-instant/">GPT-5.5 Instant</a></li>
+          <li><a href="/mirofish-english/">MiroFish English</a></li>
+          <li><a href="/mirofish-trading/">MiroFish trading</a></li>
+          <li><a href="/mirofish-how-to-use/">MiroFish how to use</a></li>
+          <li><a href="/mirofish-offline/">MiroFish-Offline</a></li>
+          <li><a href="/mirofish-github/">MiroFish GitHub</a></li>
+          <li><a href="/mirofish-founder/">MiroFish founder</a></li>
+          <li><a href="/mirofish-polymarket/">MiroFish Polymarket</a></li>
+          <li><a href="/mirofish-demo/">MiroFish demo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="https://www.shanda.com/" target="_blank" rel="noopener">Shanda Group</a></li>
+          <li><a href="/checkout/?plan=enterprise&billing=annual&source=footer_company">Enterprise Checkout</a></li>
+          <li><a href="mailto:support@aigeamy.com">support@aigeamy.com</a></li>
+          <li><a href="https://discord.gg/ePf5aPaHnA" target="_blank" rel="noopener">Community</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href="/terms/">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 MiroFish · Incubated by Shanda Group · AGPL-3.0 Open Source</p>
+      <div class="footer-bottom-links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:support@aigeamy.com">support@aigeamy.com</a>
+        <a href="mailto:mirofish@shanda.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="launch-modal-overlay" id="launch-modal" hidden>
+    <div class="launch-modal-shell" role="dialog" aria-modal="true" aria-labelledby="launch-modal-title">
+      <button type="button" class="launch-modal-close" data-launch-close aria-label="Close pricing and checkout">x</button>
+
+      <div class="launch-modal-step" data-launch-step="plans">
+        <div class="launch-modal-copy">
+          <p class="launch-modal-eyebrow">Choose your plan</p>
+          <h2 class="launch-modal-title" id="launch-modal-title">Launch MiroFish with the right simulation tier</h2>
+          <p class="launch-modal-desc">Start Simulation now opens pricing first. Yearly billing keeps the same flow but drops Pro to half price before you continue into secure checkout.</p>
+        </div>
+
+        <div class="billing-toggle launch-billing-toggle" role="tablist" aria-label="Choose monthly or yearly billing in modal">
+          <button type="button" class="billing-chip" data-billing-option="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" class="billing-chip is-active" data-billing-option="annual" aria-pressed="true">
+            Yearly
+            <span class="billing-chip-badge">50% off</span>
+          </button>
+        </div>
+
+        <div class="launch-plan-grid">
+          <button type="button" class="launch-plan-card" data-modal-plan="starter">
+            <div class="launch-plan-chip-row">
+              <span class="launch-plan-chip">Starter</span>
+            </div>
+            <div class="launch-plan-name">Starter</div>
+            <p class="launch-plan-desc">Explore the core workflow, test simulation prompts, and start with a lightweight paid plan.</p>
+            <div class="launch-plan-price">
+              <span class="price-currency">$</span>
+              <span class="launch-plan-price-amount" data-modal-price-amount="starter">9</span>
+              <span class="launch-plan-price-period" data-modal-price-period="starter">/ month</span>
+            </div>
+            <p class="launch-plan-meta" data-modal-price-note="starter">$9 charged monthly for lightweight exploration.</p>
+            <div class="launch-plan-features">
+              <div class="launch-plan-feature">100 simulations per month</div>
+              <div class="launch-plan-feature">Up to 50 agents per run</div>
+              <div class="launch-plan-feature">Hosted checkout on the MiroFish site</div>
+            </div>
+          </button>
+
+          <button type="button" class="launch-plan-card is-featured" data-modal-plan="pro">
+            <div class="launch-plan-chip-row">
+              <span class="launch-plan-chip">Most popular</span>
+            </div>
+            <div class="launch-plan-name">Pro</div>
+            <p class="launch-plan-desc">Run regular prediction workflows with bigger agent swarms, richer reports, and the fastest hosted purchase path.</p>
+            <div class="launch-plan-price">
+              <span class="price-currency">$</span>
+              <span class="launch-plan-price-amount" data-modal-price-amount="pro">14.50</span>
+              <span class="launch-plan-price-period" data-modal-price-period="pro">/ mo billed yearly</span>
+            </div>
+            <p class="launch-plan-meta" data-modal-price-note="pro">$174 charged yearly. Save 50% on every annual renewal.</p>
+            <div class="launch-plan-features">
+              <div class="launch-plan-feature">500 simulations per month</div>
+              <div class="launch-plan-feature">Up to 500 agents per run</div>
+              <div class="launch-plan-feature">Hosted checkout and faster onboarding</div>
+            </div>
+          </button>
+
+          <button type="button" class="launch-plan-card" data-modal-plan="enterprise">
+            <div class="launch-plan-chip-row">
+              <span class="launch-plan-chip">Enterprise</span>
+            </div>
+            <div class="launch-plan-name">Enterprise</div>
+            <p class="launch-plan-desc">For private deployments, larger teams, and high-touch rollout support that needs direct coordination with the MiroFish team.</p>
+            <div class="launch-plan-price">
+              <span class="price-currency">$</span>
+              <span class="launch-plan-price-amount" data-modal-price-amount="enterprise">59</span>
+              <span class="launch-plan-price-period" data-modal-price-period="enterprise">/ month</span>
+            </div>
+            <p class="launch-plan-meta" data-modal-price-note="enterprise">$59 charged monthly for high-scale teams.</p>
+            <div class="launch-plan-features">
+              <div class="launch-plan-feature">Unlimited simulations and agents</div>
+              <div class="launch-plan-feature">On-premise or private cloud rollout</div>
+              <div class="launch-plan-feature">Dedicated success engineer and SLA support</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="launch-modal-footer">
+          <div class="launch-selection-summary">
+            <div class="launch-selection-label">Selected plan</div>
+            <div class="launch-selection-value" data-selection-title>Pro · Yearly</div>
+            <div class="launch-selection-note" data-selection-note>$174 charged yearly. Equivalent to $14.50 per month.</div>
+          </div>
+          <div class="launch-footer-actions">
+            <button type="button" class="launch-secondary-button" data-launch-close>Not now</button>
+            <button type="button" class="launch-primary-button" data-launch-continue data-analytics-click="launch_modal_continue" data-analytics-cta="true">Continue to Payment</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="launch-modal-step" data-launch-step="payment" hidden>
+        <button type="button" class="launch-back-link" data-launch-back>&lt; Back to plans</button>
+        <p class="launch-modal-eyebrow">Secure checkout</p>
+        <h2 class="launch-modal-title">Finish your MiroFish purchase</h2>
+        <p class="launch-modal-desc" data-payment-headline>We are preparing a secure payment popup for the plan you selected.</p>
+
+        <div class="payment-summary-card">
+          <div class="payment-summary-grid">
+            <div class="payment-summary-item">
+              <div class="payment-summary-label">Plan</div>
+              <div class="payment-summary-value" data-payment-plan>Pro · Yearly</div>
+            </div>
+            <div class="payment-summary-item">
+              <div class="payment-summary-label">Billing</div>
+              <div class="payment-summary-value" data-payment-billing>$174 charged yearly</div>
+            </div>
+            <div class="payment-summary-item">
+              <div class="payment-summary-label">Discount</div>
+              <div class="payment-summary-value" data-payment-discount>50% off yearly pricing</div>
+            </div>
+            <div class="payment-summary-item">
+              <div class="payment-summary-label">Checkout flow</div>
+              <div class="payment-summary-value" data-payment-provider>Secure hosted payment popup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-status" data-payment-status>
+          Preparing your checkout session. A secure payment popup should appear over this page in a moment.
+        </div>
+
+        <div class="payment-actions">
+          <a href="#" class="launch-primary-button launch-link-button" data-payment-link target="mirofish-checkout-popup" rel="noopener" hidden data-analytics-click="reopen_payment_popup" data-analytics-cta="true">Open secure payment</a>
+          <button type="button" class="launch-secondary-button" data-launch-close>Continue later</button>
+        </div>
+      </div>
+
+      <div class="launch-modal-step" data-launch-step="success" hidden>
+        <div class="launch-success-card">
+          <div class="launch-success-badge">Payment received</div>
+          <h2 class="launch-modal-title">Checkout finished successfully</h2>
+          <p class="launch-modal-desc">Your payment window returned to MiroFish successfully. Keep this page open if you want to review plans again or contact the team for onboarding details.</p>
+          <div class="payment-summary-card" style="margin:22px 0 0;">
+            <div class="payment-summary-grid">
+              <div class="payment-summary-item">
+                <div class="payment-summary-label">Plan</div>
+                <div class="payment-summary-value" data-success-plan>Pro · Yearly</div>
+              </div>
+              <div class="payment-summary-item">
+                <div class="payment-summary-label">Order</div>
+                <div class="payment-summary-value" data-success-order>Pending confirmation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="launch-success-actions">
+          <button type="button" class="launch-secondary-button" data-pricing-jump data-pricing-source="success_restart" data-pricing-plan-target="pro" data-pricing-billing="annual">Open plans again</button>
+          <button type="button" class="launch-primary-button" data-launch-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Scroll Animations =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ===== FAQ Toggle =====
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          item.querySelector('.faq-answer').setAttribute('aria-hidden', 'false');
+          q.setAttribute('aria-expanded', 'true');
+        }
+      });
+      q.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); }
+      });
+    });
+
+    // ===== Nav scroll effect =====
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.style.boxShadow = '0 2px 20px rgba(13,27,46,0.1)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    }, { passive: true });
+
+    // ===== Nav auth state =====
+    const signinButton = document.getElementById('signin-button');
+    const navUserMenu = document.getElementById('nav-user-menu');
+    const navUserDropdown = document.getElementById('nav-user-dropdown');
+    const navDropdownEmail = document.getElementById('nav-dropdown-email');
+    const navSignoutAction = document.getElementById('nav-signout-action');
+    const authCacheKey = 'mirofish.auth.user';
+
+    function avatarInitial(email) {
+      return String(email || 'M').trim().charAt(0).toUpperCase() || 'M';
+    }
+
+    function getCachedAuthUser() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(authCacheKey) || 'null');
+        return cached?.email ? { email: String(cached.email) } : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function cacheAuthUser(user) {
+      if (!user?.email) return;
+      localStorage.setItem(authCacheKey, JSON.stringify({ email: user.email }));
+    }
+
+    function clearCachedAuthUser() {
+      localStorage.removeItem(authCacheKey);
+    }
+
+    function closeNavUserMenu() {
+      if (!navUserDropdown || !signinButton) return;
+      navUserDropdown.hidden = true;
+      signinButton.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleNavUserMenu() {
+      if (!navUserDropdown || !signinButton) return;
+      const willOpen = navUserDropdown.hidden;
+      navUserDropdown.hidden = !willOpen;
+      signinButton.setAttribute('aria-expanded', String(willOpen));
+    }
+
+    async function signOutFromNav() {
+      clearCachedAuthUser();
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }).catch(() => {});
+      window.location.href = '/';
+    }
+
+    function setSignedOutNav() {
+      if (!signinButton) return;
+      closeNavUserMenu();
+      signinButton.textContent = 'Sign In';
+      signinButton.title = 'Sign in';
+      signinButton.setAttribute('aria-label', 'Sign in');
+      signinButton.classList.remove('avatar-button');
+      signinButton.classList.remove('auth-pending');
+      signinButton.onclick = () => { window.location = '/auth/'; };
+      if (navDropdownEmail) navDropdownEmail.textContent = '';
+    }
+
+    function setSignedInNav(user) {
+      if (!signinButton) return;
+      const email = user?.email || 'My Account';
+      signinButton.textContent = avatarInitial(email);
+      signinButton.title = email;
+      signinButton.setAttribute('aria-label', 'Account menu');
+      signinButton.classList.add('avatar-button');
+      signinButton.classList.remove('auth-pending');
+      signinButton.onclick = toggleNavUserMenu;
+      if (navDropdownEmail) navDropdownEmail.textContent = email;
+    }
+
+    async function refreshNavAuthState() {
+      try {
+        const response = await fetch('/api/auth/me', {
+          credentials: 'same-origin',
+          cache: 'no-store',
+        });
+        if (!response.ok) {
+          clearCachedAuthUser();
+          setSignedOutNav();
+          return;
+        }
+        const payload = await response.json().catch(() => ({}));
+        if (payload.user?.email) {
+          cacheAuthUser(payload.user);
+          setSignedInNav(payload.user);
+        } else {
+          clearCachedAuthUser();
+          setSignedOutNav();
+        }
+      } catch {
+        setSignedOutNav();
+      }
+    }
+
+    const cachedAuthUser = getCachedAuthUser();
+    if (cachedAuthUser) setSignedInNav(cachedAuthUser);
+    refreshNavAuthState();
+
+    if (navSignoutAction) navSignoutAction.addEventListener('click', signOutFromNav);
+
+    document.addEventListener('click', event => {
+      if (!navUserMenu || navUserMenu.contains(event.target)) return;
+      closeNavUserMenu();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeNavUserMenu();
+    });
+
+    // ===== Hero input demo interaction =====
+    const heroInput = document.querySelector('.hero-input');
+    const sampleTexts = [
+      'If a central bank raises rates by 0.5%, how will market sentiment shift?',
+      'How will public opinion evolve if a tech CEO resigns unexpectedly?',
+      'If a country bans social media for 48 hours, what narratives emerge?',
+      'Predict the social reaction if a major city announces free public transit.'
+    ];
+    let sampleIndex = 0;
+    let typingTimer;
+
+    function typeSample(text) {
+      heroInput.value = '';
+      let i = 0;
+      clearInterval(typingTimer);
+      typingTimer = setInterval(() => {
+        heroInput.value += text[i++];
+        if (i >= text.length) clearInterval(typingTimer);
+      }, 28);
+    }
+
+    heroInput.addEventListener('focus', () => clearInterval(typingTimer));
+
+    // Auto-cycle sample text every 5s when not focused
+    let cycleTimer = setInterval(() => {
+      if (document.activeElement !== heroInput && !heroInput.value) {
+        typeSample(sampleTexts[sampleIndex++ % sampleTexts.length]);
+      }
+    }, 5000);
+
+    // Start after 2s
+    setTimeout(() => typeSample(sampleTexts[0]), 2000);
+  </script>
+  <script defer src="/assets/launch-flow.js?v=20260428-site-checkout"></script>
+
+</body>
+</html>

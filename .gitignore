@@ -1,0 +1,14 @@
+server-*.log
+server-*.err.log
+*-dev-server*.log
+mirofish-dev-*.log
+node_modules/
+data/
+.env
+.env.*
+*.tsbuildinfo
+.wrangler/
+.git_disabled/
+test-results/
+*.out.log
+*.err.log

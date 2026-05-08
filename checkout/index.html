@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiroFish Checkout</title>
+  <meta name="description" content="Complete your MiroFish plan checkout on the MiroFish website." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script defer src="/assets/analytics.js"></script>
+  <style>
+    :root {
+      --ocean-dark: #0d1b2e;
+      --ocean-mid: #0f2a44;
+      --blue-primary: #1e88e5;
+      --blue-electric: #00c8f0;
+      --cyan-glow: #00e5ff;
+      --bg-pale: #f5faff;
+      --bg-section: #edf6ff;
+      --text-primary: #0d1b2e;
+      --text-secondary: #294866;
+      --text-muted: #5c7a99;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-deep: 0 24px 70px rgba(13, 27, 46, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(0, 200, 240, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(30, 136, 229, 0.16), transparent 30%),
+        linear-gradient(180deg, #f8fcff 0%, var(--bg-section) 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid rgba(30, 136, 229, 0.12);
+      background: rgba(245, 250, 255, 0.86);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .brand img { width: 36px; height: 36px; }
+    .back-link {
+      border: 1px solid rgba(30, 136, 229, 0.18);
+      border-radius: 999px;
+      padding: 9px 16px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 56px 0 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(380px, 1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .checkout-card {
+      border: 1px solid rgba(30, 136, 229, 0.14);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow-deep);
+      overflow: hidden;
+    }
+
+    .hero-card {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 620px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(237, 246, 255, 0.82)),
+        radial-gradient(circle at 12% 15%, rgba(0, 229, 255, 0.14), transparent 24%);
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--blue-primary);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      margin-bottom: 22px;
+    }
+
+    .lead {
+      max-width: 580px;
+      color: var(--text-secondary);
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 42px;
+    }
+    .trust-item {
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.65);
+    }
+    .trust-value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .trust-label {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .checkout-card {
+      padding: 28px;
+      background: #fff;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+    .summary-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .summary-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .plan-chip {
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--blue-primary);
+      background: rgba(30, 136, 229, 0.08);
+      border: 1px solid rgba(30, 136, 229, 0.14);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .price-box {
+      border-radius: 24px;
+      padding: 26px;
+      color: #fff;
+      background: linear-gradient(145deg, var(--ocean-dark), var(--ocean-mid));
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-box::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      top: -70px;
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.2);
+      filter: blur(4px);
+    }
+    .price-main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .price-amount {
+      font-size: 3.25rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+    .price-period {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.94rem;
+    }
+    .price-note {
+      position: relative;
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(13, 27, 46, 0.08);
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary-row strong {
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    .actions {
+      display: grid;
+      gap: 12px;
+    }
+    button,
+    .payment-link {
+      min-height: 52px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .primary-button {
+      color: var(--ocean-dark);
+      background: linear-gradient(135deg, var(--blue-electric), var(--cyan-glow));
+      box-shadow: 0 16px 32px rgba(0, 200, 240, 0.22);
+    }
+    .primary-button:hover,
+    .payment-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(0, 200, 240, 0.26);
+    }
+    .primary-button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+      transform: none;
+      box-shadow: none;
+    }
+    .payment-link {
+      color: #fff;
+      background: var(--ocean-dark);
+    }
+    .payment-link[hidden] { display: none; }
+    .console-link {
+      min-height: 52px;
+      border-radius: 16px;
+      border: 2px solid var(--blue-primary);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-primary);
+      background: rgba(30, 136, 229, 0.06);
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .console-link:hover { background: rgba(30, 136, 229, 0.12); transform: translateY(-1px); }
+    .console-link[hidden] { display: none; }
+
+    .status {
+      min-height: 52px;
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: var(--text-secondary);
+      background: var(--bg-pale);
+      border: 1px solid rgba(30, 136, 229, 0.12);
+      line-height: 1.55;
+      font-size: 0.9rem;
+    }
+    .status[data-tone="error"] {
+      color: #9f1239;
+      background: #fff1f2;
+      border-color: rgba(225, 29, 72, 0.18);
+    }
+    .status[data-tone="success"] {
+      color: #0f766e;
+      background: #ecfdf5;
+      border-color: rgba(13, 148, 136, 0.18);
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      main {
+        grid-template-columns: 1fr;
+        padding-top: 32px;
+      }
+      .hero-card {
+        min-height: auto;
+        padding: 30px;
+      }
+      .trust-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Checkout navigation">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" alt="" />
+      <span>MiroFish</span>
+    </a>
+    <a class="back-link" href="/#pricing">Back to Pricing</a>
+  </nav>
+
+  <main>
+    <section class="hero-card" aria-labelledby="checkout-heading">
+      <div>
+        <p class="eyebrow">MiroFish Checkout</p>
+        <h1 id="checkout-heading">Finish your plan on this site.</h1>
+        <p class="lead">
+          Review your selected tier, billing cadence, and amount before preparing a secure payment session.
+          The pricing buttons now land here first, so you stay inside MiroFish before continuing.
+        </p>
+      </div>
+      <div class="trust-row" aria-label="Checkout assurances">
+        <div class="trust-item">
+          <div class="trust-value">Local</div>
+          <div class="trust-label">Plan review happens on the MiroFish website.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-value">Clear</div>
+          <div class="trust-label">Amount and billing cadence are shown before payment.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-value">Secure</div>
+          <div class="trust-label">Payment sessions are created only when you click.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="checkout-card" aria-label="Order summary">
+      <div class="summary-header">
+        <div>
+          <div class="summary-title" data-plan-title>Pro · Yearly</div>
+          <div class="summary-subtitle" data-plan-subtitle>Hosted checkout for regular teams</div>
+        </div>
+        <div class="plan-chip" data-plan-chip>Pro</div>
+      </div>
+
+      <div class="price-box">
+        <div class="price-main">
+          <span class="price-amount" data-display-price>$14.50</span>
+          <span class="price-period" data-display-period>/ mo billed yearly</span>
+        </div>
+        <p class="price-note" data-price-note>$174 charged yearly. Equivalent to $14.50 per month.</p>
+      </div>
+
+      <div class="summary-list">
+        <div class="summary-row">
+          <span>Billing</span>
+          <strong data-billing-label>Yearly</strong>
+        </div>
+        <div class="summary-row">
+          <span>Due today</span>
+          <strong data-due-today>$174</strong>
+        </div>
+        <div class="summary-row">
+          <span>Discount</span>
+          <strong data-discount-label>50% yearly discount</strong>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary-button" type="button" data-create-checkout>Prepare Payment</button>
+        <a class="payment-link" data-payment-link href="#" target="_blank" rel="noopener" hidden>Open Secure Payment</a>
+        <a class="console-link" data-console-link href="#" hidden>Open My Console</a>
+        <div class="status" data-status>Ready when you are. Payment will not start until you click Prepare Payment.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const annualDiscountMultiplier = 0.5
+    const currency = 'USD'
+    const plans = {
+      starter: {
+        id: 'starter',
+        name: 'Starter',
+        monthlyAmountCents: 900,
+        subtitle: 'Lightweight exploration',
+      },
+      pro: {
+        id: 'pro',
+        name: 'Pro',
+        monthlyAmountCents: 2900,
+        annualDiscountMultiplier,
+        subtitle: 'Hosted checkout for regular teams',
+      },
+      enterprise: {
+        id: 'enterprise',
+        name: 'Enterprise',
+        monthlyAmountCents: 5900,
+        subtitle: 'High-scale teams and dedicated support',
+      },
+    }
+
+    const params = new URLSearchParams(window.location.search)
+    const rawPlanParam = params.get('plan') || ''
+    const rawPlanId = rawPlanParam.split(':')[0]
+    const planId = plans[rawPlanId] ? rawPlanId : 'pro'
+    const billingCycle = params.get('billing') === 'monthly' || rawPlanParam.endsWith(':monthly') ? 'monthly' : 'annual'
+    const source = params.get('source') || 'checkout_page'
+    const plan = plans[planId]
+    const isAnnual = billingCycle === 'annual'
+
+    function formatMoney(amountCents) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency,
+        minimumFractionDigits: amountCents % 100 === 0 ? 0 : 2,
+        maximumFractionDigits: amountCents % 100 === 0 ? 0 : 2,
+      }).format(amountCents / 100)
+    }
+
+    function getPricing() {
+      const discountMultiplier = plan.annualDiscountMultiplier || 1
+      const annualAmountCents = Math.round(plan.monthlyAmountCents * 12 * discountMultiplier)
+      const annualMonthlyEquivalentCents = Math.round(annualAmountCents / 12)
+      const amountCents = isAnnual ? annualAmountCents : plan.monthlyAmountCents
+      const displayAmountCents = isAnnual ? annualMonthlyEquivalentCents : plan.monthlyAmountCents
+      const savingsPercent = discountMultiplier < 1 ? Math.round((1 - discountMultiplier) * 100) : 0
+      return {
+        selectionId: `${plan.id}:${billingCycle}`,
+        amountCents,
+        displayAmount: formatMoney(displayAmountCents),
+        displayPeriod: isAnnual ? '/ mo billed yearly' : '/ month',
+        dueToday: formatMoney(amountCents),
+        billingLabel: isAnnual ? 'Yearly' : 'Monthly',
+        discountLabel: isAnnual && savingsPercent > 0 ? `${savingsPercent}% yearly discount` : isAnnual ? 'Annual billing' : 'Monthly billing',
+        note: isAnnual
+          ? `${formatMoney(annualAmountCents)} charged yearly. Equivalent to ${formatMoney(annualMonthlyEquivalentCents)} per month.`
+          : `${formatMoney(plan.monthlyAmountCents)} charged monthly.`,
+      }
+    }
+
+    const pricing = getPricing()
+    document.querySelector('[data-plan-title]').textContent = `${plan.name} · ${pricing.billingLabel}`
+    document.querySelector('[data-plan-subtitle]').textContent = plan.subtitle
+    document.querySelector('[data-plan-chip]').textContent = plan.name
+    document.querySelector('[data-plan-title]').textContent = `${plan.name} - ${pricing.billingLabel}`
+    document.querySelector('[data-display-price]').textContent = pricing.displayAmount
+    document.querySelector('[data-display-period]').textContent = pricing.displayPeriod
+    document.querySelector('[data-price-note]').textContent = pricing.note
+    document.querySelector('[data-billing-label]').textContent = pricing.billingLabel
+    document.querySelector('[data-due-today]').textContent = pricing.dueToday
+    document.querySelector('[data-discount-label]').textContent = pricing.discountLabel
+
+    function track(eventName, metadata) {
+      if (!window.MiroFishAnalytics || typeof window.MiroFishAnalytics.track !== 'function') return
+      try {
+        window.MiroFishAnalytics.track({
+          eventType: eventName === 'plan_selected' ? 'plan' : 'checkout',
+          eventName,
+          sectionKey: 'checkout',
+          elementKey: eventName,
+          metadata,
+        })
+      } catch {}
+    }
+
+    const button = document.querySelector('[data-create-checkout]')
+    const paymentLink = document.querySelector('[data-payment-link]')
+    const consoleLink = document.querySelector('[data-console-link]')
+    const statusBox = document.querySelector('[data-status]')
+    let paymentPopup = null
+    let popupMonitor = null
+
+    function isLoopbackOrigin(origin) {
+      try {
+        const url = new URL(origin)
+        return ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)
+      } catch {
+        return false
+      }
+    }
+
+    function isAllowedMessageOrigin(origin) {
+      if (origin === window.location.origin) return true
+      try {
+        const source = new URL(origin)
+        const current = new URL(window.location.origin)
+        return source.port === current.port && isLoopbackOrigin(origin) && isLoopbackOrigin(window.location.origin)
+      } catch {
+        return false
+      }
+    }
+
+    function openPaymentPopup() {
+      const width = 560
+      const height = 780
+      const left = Math.max(0, Math.round((window.screen.width - width) / 2))
+      const top = Math.max(0, Math.round((window.screen.height - height) / 2))
+      const features = [
+        'popup=yes',
+        'resizable=yes',
+        'scrollbars=yes',
+        `width=${width}`,
+        `height=${height}`,
+        `left=${left}`,
+        `top=${top}`,
+      ].join(',')
+      const popup = window.open('about:blank', 'mirofish-creem-checkout', features)
+      if (popup) {
+        popup.focus()
+        popup.document.open()
+        popup.document.write(
+          '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>MiroFish Payment</title><style>' +
+            'body{margin:0;font-family:Inter,Arial,sans-serif;background:#0d1b2e;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;}main{max-width:360px;text-align:center;}strong{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#00e5ff;}h1{font-size:28px;line-height:1.1;margin:0 0 12px;}p{margin:0;color:rgba(255,255,255,.72);line-height:1.6;}' +
+            '</style></head><body><main><strong>MiroFish</strong><h1>Preparing Creem payment</h1><p>Keep this window open while we create your secure checkout session.</p></main></body></html>',
+        )
+        popup.document.close()
+      }
+      return popup
+    }
+
+    function stopPopupMonitor() {
+      if (popupMonitor) {
+        window.clearInterval(popupMonitor)
+        popupMonitor = null
+      }
+    }
+
+    function monitorPaymentPopup() {
+      stopPopupMonitor()
+      popupMonitor = window.setInterval(function () {
+        if (!paymentPopup || paymentPopup.closed) {
+          stopPopupMonitor()
+          paymentPopup = null
+        }
+      }, 700)
+    }
+
+    function getConsoleHref(orderId, guestToken) {
+      if (orderId && guestToken) return `/console?order=${encodeURIComponent(orderId)}&guest_token=${encodeURIComponent(guestToken)}`
+      if (orderId) return `/console?order=${encodeURIComponent(orderId)}`
+      return '/console/'
+    }
+
+    function rememberWorkspace(orderId, guestToken) {
+      if (!orderId) return
+      try {
+        window.localStorage.setItem('mirofish:lastWorkspace', JSON.stringify({
+          orderId: orderId || '',
+          guestToken: guestToken || '',
+          consolePath: getConsoleHref(orderId, guestToken),
+          savedAt: new Date().toISOString(),
+        }))
+      } catch {}
+    }
+
+    async function confirmCheckoutReturn(orderId, guestToken) {
+      const redirectParams = Object.fromEntries(params.entries())
+      const response = await fetch('/api/checkout/creem-confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({
+          orderId,
+          guestToken,
+          checkoutId: params.get('checkout_id') || params.get('checkoutId') || '',
+          redirectParams,
+        }),
+      })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        throw new Error(payload.message || `Payment confirmation failed with HTTP ${response.status}.`)
+      }
+      return payload
+    }
+
+    function markPaymentComplete(orderId, guestToken) {
+      stopPopupMonitor()
+      rememberWorkspace(orderId, guestToken)
+      statusBox.dataset.tone = 'success'
+      statusBox.textContent = 'Payment completed! Your MiroFish workspace is being prepared.'
+      button.textContent = 'Prepare Another Payment'
+      paymentLink.hidden = true
+      paymentLink.removeAttribute('href')
+      if (orderId) {
+        consoleLink.href = getConsoleHref(orderId, guestToken)
+        consoleLink.hidden = false
+      }
+      track('payment_completed', {
+        source,
+        planId: pricing.selectionId,
+        billingCycle,
+        orderId: orderId || '',
+      })
+    }
+
+    if (params.get('checkout') === 'success') {
+      const returnedOrderId = params.get('order') || ''
+      const returnedGuestToken = params.get('guest_token') || ''
+      statusBox.textContent = 'Confirming payment and preparing your workspace...'
+      confirmCheckoutReturn(returnedOrderId, returnedGuestToken)
+        .then(function () {
+          markPaymentComplete(returnedOrderId, returnedGuestToken)
+          if (window.opener && window.opener !== window) {
+            try {
+              window.opener.postMessage({
+                type: 'mirofish-checkout-result',
+                status: 'success',
+                orderId: returnedOrderId,
+                guestToken: returnedGuestToken,
+                planId: params.get('plan') || pricing.selectionId,
+              }, '*')
+              window.setTimeout(function () {
+                window.close()
+              }, 700)
+            } catch {}
+          }
+        })
+        .catch(function (error) {
+          statusBox.dataset.tone = 'error'
+          statusBox.textContent = error instanceof Error ? error.message : 'Payment could not be confirmed.'
+          if (returnedOrderId) {
+            consoleLink.href = getConsoleHref(returnedOrderId, returnedGuestToken)
+            consoleLink.hidden = false
+          }
+        })
+    }
+
+    window.addEventListener('message', function (event) {
+      if (!isAllowedMessageOrigin(event.origin)) return
+      if (!event.data || event.data.type !== 'mirofish-checkout-result') return
+      if (event.data.status === 'success') {
+        markPaymentComplete(event.data.orderId || '', event.data.guestToken || '')
+      }
+    })
+
+    button.addEventListener('click', async function () {
+      button.disabled = true
+      paymentLink.hidden = true
+      paymentLink.removeAttribute('href')
+      statusBox.removeAttribute('data-tone')
+      statusBox.textContent = 'Preparing your MiroFish payment popup...'
+      paymentPopup = openPaymentPopup()
+      track('checkout_started', {
+        source,
+        planId: pricing.selectionId,
+        billingCycle,
+        amountCents: pricing.amountCents,
+      })
+
+      try {
+        const response = await fetch('/api/launch-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ planId: pricing.selectionId, source }),
+          credentials: 'same-origin',
+        })
+        const rawText = await response.text()
+        let payload = {}
+        try {
+          payload = rawText ? JSON.parse(rawText) : {}
+        } catch {}
+        if (!response.ok) {
+          if ([404, 405, 501].includes(response.status)) {
+            throw new Error('Checkout API is not running in this preview. Start the site with npm run dev so /api/launch-checkout is available.')
+          }
+          throw new Error(payload.message || `Checkout could not be started. HTTP ${response.status}.`)
+        }
+        if (!payload.checkoutUrl) {
+          throw new Error('Checkout did not return a payment link.')
+        }
+
+        statusBox.dataset.tone = 'success'
+        statusBox.textContent = paymentPopup && !paymentPopup.closed
+          ? 'Creem checkout is open in a secure payment popup.'
+          : 'Creem checkout is ready. Your browser blocked the popup, so use the button below.'
+        paymentLink.href = payload.checkoutUrl
+        paymentLink.hidden = Boolean(paymentPopup && !paymentPopup.closed)
+        paymentLink.textContent = 'Open Creem Payment'
+        track('checkout_redirected', {
+          source,
+          planId: pricing.selectionId,
+          billingCycle,
+          amountCents: pricing.amountCents,
+          orderId: payload.orderId || '',
+          hasGuestToken: Boolean(payload.guestToken),
+          paymentProvider: payload.paymentProvider || 'creem',
+          popupMode: paymentPopup && !paymentPopup.closed ? 'popup_from_site_checkout' : 'manual_from_site_checkout',
+        })
+        if (paymentPopup && !paymentPopup.closed) {
+          paymentPopup.location.href = payload.checkoutUrl
+          paymentPopup.focus()
+          monitorPaymentPopup()
+        }
+      } catch (error) {
+        if (paymentPopup && !paymentPopup.closed) {
+          paymentPopup.close()
+        }
+        statusBox.dataset.tone = 'error'
+        statusBox.textContent = error instanceof Error ? error.message : 'Checkout could not be started.'
+      } finally {
+        button.disabled = false
+      }
+    })
+  </script>
+</body>
+</html>

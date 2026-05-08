@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#eef6ff">
+  <title>MiroFish Offline | Self-Hosting, Docker, and Private Deployment</title>
+  <meta name="description" content="MiroFish offline guide: what self-hosting means, how Docker and .env setup fit, which dependencies still need model access, and how to plan private deployment.">
+  <meta name="keywords" content="MiroFish offline, MiroFish self-host, MiroFish Docker, MiroFish private deployment, MiroFish local install">
+  <link rel="canonical" href="https://mirofish.best/mirofish-offline/">
+  <meta property="og:title" content="MiroFish Offline and Self-Hosting Guide">
+  <meta property="og:description" content="A realistic guide to MiroFish self-hosting, private deployment, Docker setup, and offline constraints.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mirofish.best/mirofish-offline/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="../assets/seo-pages.css">
+  <script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../">MiroFish</a>
+    <nav class="navlinks" aria-label="Guide navigation">
+      <a href="../mirofish-github/">GitHub</a>
+      <a href="../mirofish-how-to-use/">How to use</a>
+      <a href="../mirofish-ai/">AI</a>
+      <a href="../mirofish-demo/">Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">MiroFish offline</p>
+      <h1>MiroFish can be self-hosted, but fully offline use depends on every model and storage dependency.</h1>
+      <p class="lead">People search for MiroFish offline when they want private control over source code, data, model calls, or deployment infrastructure. The practical answer is: self-hosting is the right starting point, while true air-gapped operation requires local models and local supporting services.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../mirofish-github/">Check GitHub setup</a>
+        <a class="button" href="../#pricing">Use the online workspace</a>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div class="panel">
+        <h2>Self-hosting checklist</h2>
+        <ol>
+          <li>Read the current GitHub README before copying setup commands.</li>
+          <li>Review `docker-compose.yml`, Dockerfile, frontend, backend, and service ports.</li>
+          <li>Copy `.env.example` into a local environment file and fill values through your own secret manager.</li>
+          <li>Choose model endpoints: hosted provider, private gateway, or local model server.</li>
+          <li>Plan storage for simulation memory, uploaded seed files, generated reports, and logs.</li>
+          <li>Confirm AGPL-3.0 obligations before modifying or offering hosted access.</li>
+        </ol>
+      </div>
+      <aside class="panel">
+        <h2>What "offline" usually means</h2>
+        <ul>
+          <li><strong>Private deployment:</strong> your servers, but external model APIs may still be used.</li>
+          <li><strong>Local model deployment:</strong> model inference runs inside your environment.</li>
+          <li><strong>Air-gapped deployment:</strong> no outbound calls, which requires local models, local dependencies, and stricter maintenance.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>Important constraints</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Model access</h3>
+          <p>MiroFish simulations are only as available as the model endpoint behind them. If the model provider is remote, the deployment is self-hosted but not fully offline.</p>
+        </article>
+        <article class="card">
+          <h3>Compute load</h3>
+          <p>Multi-agent simulations can be heavier than normal chat. Agent count, round count, report depth, and memory design all affect latency and cost.</p>
+        </article>
+        <article class="card">
+          <h3>Operational review</h3>
+          <p>Before production use, review logs, auth, rate limits, file handling, data retention, and update process. A demo install is not the same as a hardened deployment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>Recommended path</h2>
+      <p>Start with the online MiroFish workspace or demo reports to understand the workflow. Then inspect GitHub for Docker and `.env.example` details. Only after that should you decide whether self-hosting is worth the operational overhead for your team.</p>
+      <div class="related">
+        <a href="../mirofish-demo/">MiroFish demo</a>
+        <a href="../mirofish-github/">MiroFish GitHub</a>
+        <a href="../mirofish-how-to-use/">How to use MiroFish</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>MiroFish self-hosting guide.</span>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="../mirofish-github/">GitHub</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
