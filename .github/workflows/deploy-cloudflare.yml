@@ -1,0 +1,43 @@
+name: Deploy Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy Pages and Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 615b05ce6668dd8e0e2431077fc29c82
+      CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+      CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Pages output
+        run: npm run build:pages
+
+      - name: Deploy Pages
+        run: npx wrangler pages deploy dist-pages --project-name my-mirofish-b --branch main --commit-dirty=true
+
+      - name: Deploy Worker
+        run: npx wrangler deploy -c wrangler.worker.toml
