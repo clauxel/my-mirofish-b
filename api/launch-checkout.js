@@ -6,6 +6,10 @@ import { loadLocalEnvironment } from '../server-lib/env-loader.mjs'
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)))
 const bodyLimitBytes = 1024 * 1024
 const annualDiscountMultiplier = 0.5
+const projectCode = 'MFB'
+const projectKey = 'mirofish-b'
+const projectDomain = 'mirofish.best'
+const projectName = 'MiroFish B'
 const creemProductCache = globalThis.__mirofishCreemProductCache ?? new Map()
 globalThis.__mirofishCreemProductCache = creemProductCache
 
@@ -329,8 +333,8 @@ async function createCreemCheckout({ order, planSelection, source, request }) {
       method: 'POST',
       headers,
       body: {
-        name: `MiroFish ${planSelection.plan.name} ${planSelection.billingCycle === 'annual' ? 'Annual' : 'Monthly'}`,
-        description: `${planSelection.plan.name} plan for MiroFish hosted prediction workflows`,
+        name: `${projectName} ${planSelection.plan.name} ${planSelection.billingCycle === 'annual' ? 'Annual' : 'Monthly'}`,
+        description: `${planSelection.plan.name} plan for ${projectName} hosted prediction workflows on ${projectDomain}`,
         price: order.amountCents,
         currency: order.currency,
         billing_type: 'onetime',
@@ -359,6 +363,10 @@ async function createCreemCheckout({ order, planSelection, source, request }) {
         orderId: order.id,
         orderNumber: order.orderNumber,
         planId: planSelection.selectionId,
+        project: projectKey,
+        projectCode,
+        siteDomain: projectDomain,
+        appOrigin: getRequestOrigin(request),
         source: source || 'site',
       },
     },
@@ -397,7 +405,7 @@ export default async function handler(request, response) {
     const orderId = randomBytes(16).toString('hex')
     const order = {
       id: orderId,
-      orderNumber: `MF-${Date.now().toString(36).toUpperCase()}-${orderId.slice(0, 6).toUpperCase()}`,
+      orderNumber: `${projectCode}-${Date.now().toString(36).toUpperCase()}-${orderId.slice(0, 6).toUpperCase()}`,
       amountCents: planSelection.amountCents,
       amountLabel: planSelection.amountLabel,
       currency: planSelection.currency,

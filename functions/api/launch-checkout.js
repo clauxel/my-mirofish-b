@@ -14,6 +14,10 @@ import {
 } from '../_shared/mirofish.js'
 
 const annualDiscountMultiplier = 0.5
+const projectCode = 'MFB'
+const projectKey = 'mirofish-b'
+const projectDomain = 'mirofish.best'
+const projectName = 'MiroFish B'
 
 const planCatalog = {
   starter: { id: 'starter', name: 'Starter', currency: 'USD', monthlyAmountCents: 900, mode: 'checkout' },
@@ -121,8 +125,8 @@ async function createCreemCheckout({ order, planSelection, source, request, env,
       method: 'POST',
       headers,
       body: {
-        name: `MiroFish ${planSelection.plan.name} ${planSelection.billingCycle === 'annual' ? 'Annual' : 'Monthly'}`,
-        description: `${planSelection.plan.name} plan for MiroFish hosted prediction workflows`,
+        name: `${projectName} ${planSelection.plan.name} ${planSelection.billingCycle === 'annual' ? 'Annual' : 'Monthly'}`,
+        description: `${planSelection.plan.name} plan for ${projectName} hosted prediction workflows on ${projectDomain}`,
         price: order.amountCents,
         currency: order.currency,
         billing_type: 'onetime',
@@ -148,6 +152,10 @@ async function createCreemCheckout({ order, planSelection, source, request, env,
         orderId: order.id,
         orderNumber: order.orderNumber,
         planId: planSelection.selectionId,
+        project: projectKey,
+        projectCode,
+        siteDomain: projectDomain,
+        appOrigin: getRequestOrigin(request, env),
         source: source || 'site',
       },
     },
@@ -197,7 +205,7 @@ export async function onRequest(context) {
     const finalAmountLabel = adminOverride ? '$1' : planSelection.amountLabel
     const order = {
       id: orderId,
-      orderNumber: `MF-${Date.now().toString(36).toUpperCase()}-${orderId.slice(0, 6).toUpperCase()}`,
+      orderNumber: `${projectCode}-${Date.now().toString(36).toUpperCase()}-${orderId.slice(0, 6).toUpperCase()}`,
       amountCents: finalAmountCents,
       amountLabel: finalAmountLabel,
       currency: planSelection.currency,
