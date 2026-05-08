@@ -347,12 +347,12 @@
     =========================== */
     .hero {
       min-height: 100vh;
-      padding: 120px 40px 80px;
+      padding: 88px 40px 64px;
       background: var(--gradient-hero);
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 60px;
-      align-items: center;
+      align-items: start;
       max-width: 1280px;
       margin: 0 auto;
     }
@@ -363,7 +363,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
 
     .tag {
@@ -412,7 +412,7 @@
       font-size: 1rem;
       color: var(--text-secondary);
       max-width: 480px;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
       line-height: 1.7;
     }
 
@@ -518,7 +518,7 @@
     .btn-attach:hover { background: var(--bg-section); color: var(--text-secondary); }
 
     /* Hero Right - Preview Panel */
-    .hero-right {}
+    .hero-right { padding-top: 72px; }
 
     .preview-panel {
       background: var(--ocean-dark);
@@ -1898,7 +1898,8 @@
        Responsive
     =========================== */
     @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
+      .hero { grid-template-columns: 1fr; padding: 80px 24px 56px; gap: 40px; }
+      .hero-right { padding-top: 0; }
       .hero-mini-cards { display: none; }
       .features-grid { grid-template-columns: repeat(2, 1fr); }
       .workflow-steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -1921,7 +1922,7 @@
       .nav { padding: 0 20px; }
       .nav-links { display: none; }
       .section { padding: 64px 20px; }
-      .hero { padding: 90px 20px 48px; }
+      .hero { padding: 76px 20px 48px; }
       .features-grid { grid-template-columns: 1fr; }
       .usecases-grid { grid-template-columns: 1fr; }
       .workflow-steps { grid-template-columns: 1fr; }
