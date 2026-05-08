@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "node dev-server.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "deploy:pages": "npm run build:pages && npx wrangler pages deploy dist-pages --project-name my-mirofish-b --branch main --commit-dirty=true",
+    "deploy:worker": "npx wrangler deploy -c wrangler.worker.toml",
+    "deploy": "npm run deploy:pages && npm run deploy:worker",
     "prod:inspect": "node scripts/inspect-production-analytics.mjs --d1 --skip-health",
     "prod:inspect:remote": "node scripts/inspect-production-analytics.mjs"
   },

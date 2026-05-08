@@ -4,6 +4,7 @@ server-*.err.log
 mirofish-dev-*.log
 node_modules/
 data/
+dist-pages/
 .env
 .env.*
 *.tsbuildinfo

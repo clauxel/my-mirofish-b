@@ -1,0 +1,26 @@
+name = "my-mirofish-b-api"
+main = "worker/index.js"
+compatibility_date = "2024-09-23"
+workers_dev = true
+
+routes = [
+  { pattern = "mirofish.best/api/*", zone_name = "mirofish.best" },
+  { pattern = "www.mirofish.best/api/*", zone_name = "mirofish.best" },
+  { pattern = "www.mirofish.best/*", zone_name = "mirofish.best" }
+]
+
+[vars]
+APP_ORIGIN = "https://mirofish.best"
+CREEM_DEFAULT_SUCCESS_URL = "https://mirofish.best/"
+CREEM_ENV = "live"
+ADMIN_ALLOWED_EMAILS = "li3169086779@outlook.com"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mirofish-b-analytics"
+database_id = "ef758d46-f253-4585-b2ea-aa6bb7024c7d"
+
+[[secrets_store_secrets]]
+binding = "API_PROD_KEY"
+store_id = "f098be9c97cc42b19d4113843eadd659"
+secret_name = "API_PROD_KEY"

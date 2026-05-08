@@ -485,6 +485,22 @@ export function getCreemSettings(env) {
   return { apiKey, baseUrl, isTestMode }
 }
 
+async function resolveSecretValue(value) {
+  if (value && typeof value.get === 'function') return String(await value.get()).trim()
+  return String(value ?? '').trim()
+}
+
+export async function getCreemSettingsAsync(env) {
+  const mode = String(env.CREEM_ENV ?? env.CREEM_MODE ?? '').trim().toLowerCase()
+  const testApiKey = await resolveSecretValue(env.API_TEST_KEY ?? env.CREEM_TEST_KEY)
+  const liveApiKey = await resolveSecretValue(env.API_PROD_KEY ?? env.CREEM_API_KEY ?? env.CREEM_KEY)
+  const isTestMode =
+    mode === 'test' ? true : mode === 'live' || mode === 'production' ? false : Boolean(testApiKey)
+  const apiKey = isTestMode ? testApiKey : liveApiKey || testApiKey
+  const baseUrl = env.CREEM_BASE_URL ?? (isTestMode ? 'https://test-api.creem.io' : 'https://api.creem.io')
+  return { apiKey, baseUrl, isTestMode }
+}
+
 export async function requestJson(url, { method = 'GET', headers = {}, body } = {}) {
   const hdrs = { 'Content-Type': 'application/json', ...headers }
   const response = await fetch(url, { method, headers: hdrs, body: body ? JSON.stringify(body) : undefined })
@@ -499,7 +515,7 @@ export async function requestJson(url, { method = 'GET', headers = {}, body } = 
 }
 
 export async function getCreemCheckoutSession(env, checkoutId) {
-  const { apiKey, baseUrl } = getCreemSettings(env)
+  const { apiKey, baseUrl } = await getCreemSettingsAsync(env)
   if (!apiKey) throw new HttpError(503, 'Creem payment is not configured on this deployment.')
   return await requestJson(`${baseUrl}/v1/checkouts?checkout_id=${encodeURIComponent(checkoutId)}`, {
     headers: { 'x-api-key': apiKey },

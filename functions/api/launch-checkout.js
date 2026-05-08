@@ -51,17 +51,6 @@ function buildCheckoutSuccessUrl({ request, env, order, planSelection }) {
   return successUrl
 }
 
-function getCreemSettings(env) {
-  const mode = String(env.CREEM_ENV ?? env.CREEM_MODE ?? '').trim().toLowerCase()
-  const testApiKey = env.API_TEST_KEY ?? env.CREEM_TEST_KEY ?? ''
-  const liveApiKey = env.API_PROD_KEY ?? env.CREEM_API_KEY ?? env.CREEM_KEY ?? ''
-  const isTestMode =
-    mode === 'test' ? true : mode === 'live' || mode === 'production' ? false : Boolean(testApiKey)
-  const apiKey = isTestMode ? testApiKey : liveApiKey || testApiKey
-  const baseUrl = env.CREEM_BASE_URL ?? (isTestMode ? 'https://test-api.creem.io' : 'https://api.creem.io')
-  return { apiKey, baseUrl, isTestMode }
-}
-
 function resolvePlanSelection(planSelectionId) {
   const [rawPlanId, rawBillingCycle] = String(planSelectionId || 'pro:annual').trim().split(':')
   const plan = planCatalog[rawPlanId]
@@ -104,8 +93,24 @@ function getConfiguredCreemProductId(planSelection, env) {
   return null
 }
 
+async function resolveSecretValue(value) {
+  if (value && typeof value.get === 'function') return String(await value.get()).trim()
+  return String(value ?? '').trim()
+}
+
+async function getCreemSettings(env) {
+  const mode = String(env.CREEM_ENV ?? env.CREEM_MODE ?? '').trim().toLowerCase()
+  const testApiKey = await resolveSecretValue(env.API_TEST_KEY ?? env.CREEM_TEST_KEY)
+  const liveApiKey = await resolveSecretValue(env.API_PROD_KEY ?? env.CREEM_API_KEY ?? env.CREEM_KEY)
+  const isTestMode =
+    mode === 'test' ? true : mode === 'live' || mode === 'production' ? false : Boolean(testApiKey)
+  const apiKey = isTestMode ? testApiKey : liveApiKey || testApiKey
+  const baseUrl = env.CREEM_BASE_URL ?? (isTestMode ? 'https://test-api.creem.io' : 'https://api.creem.io')
+  return { apiKey, baseUrl, isTestMode }
+}
+
 async function createCreemCheckout({ order, planSelection, source, request, env, user }) {
-  const { apiKey, baseUrl } = getCreemSettings(env)
+  const { apiKey, baseUrl } = await getCreemSettings(env)
   if (!apiKey) throw new HttpError(503, 'Creem payment is not configured on this deployment.')
 
   const headers = { 'x-api-key': apiKey }
