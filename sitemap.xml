@@ -49,6 +49,36 @@
     <priority>0.74</priority>
   </url>
   <url>
+    <loc>https://mirofish.best/predictions/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+  </url>
+  <url>
+    <loc>https://mirofish.best/predictions/mirofish-eurovision-2026-winner-forecast/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://mirofish.best/predictions/mirofish-psg-vs-arsenal-forecast-2026/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mirofish.best/predictions/mirofish-2026-nba-champion-forecast/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mirofish.best/predictions/mirofish-2026-fifa-world-cup-winner-forecast/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.84</priority>
+  </url>
+  <url>
     <loc>https://mirofish.best/gpt-5-5-instant/</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>

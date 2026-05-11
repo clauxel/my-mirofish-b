@@ -29,6 +29,7 @@ const entries = [
   'mirofish-offline',
   'mirofish-polymarket',
   'mirofish-trading',
+  'predictions',
   'privacy',
   'robots.txt',
   'sitemap.xml',

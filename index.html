@@ -2018,6 +2018,7 @@
       <a href="#workflow">How It Works</a>
       <a href="#use-cases">Use Cases</a>
       <a href="#guides">Guides</a>
+      <a href="/predictions/">Forecast Lab</a>
       <a href="#pricing">Pricing</a>
       <a href="/dashboard/" id="console-menu-link">Console</a>
       <a href="https://github.com/666ghj/MiroFish" target="_blank" rel="noopener">GitHub</a>
@@ -2426,6 +2427,14 @@
             <span class="guide-card-link">Open guide -></span>
           </a>
 
+          <a class="guide-card fade-up fade-up-delay-2" href="/predictions/">
+            <span>
+              <span class="guide-card-title">MiroFish Forecast Lab</span>
+              <span class="guide-card-desc">Public MiroFish prediction cases for Eurovision, Champions League, NBA, and World Cup scenarios.</span>
+            </span>
+            <span class="guide-card-link">Open lab -></span>
+          </a>
+
           <a class="guide-card fade-up fade-up-delay-2" href="/mirofish-demo/">
             <span>
               <span class="guide-card-title">MiroFish demo</span>
@@ -2806,6 +2815,7 @@
           <li><a href="/mirofish-github/">MiroFish GitHub</a></li>
           <li><a href="/mirofish-founder/">MiroFish founder</a></li>
           <li><a href="/mirofish-polymarket/">MiroFish Polymarket</a></li>
+          <li><a href="/predictions/">MiroFish Forecast Lab</a></li>
           <li><a href="/mirofish-demo/">MiroFish demo</a></li>
         </ul>
       </div>
@@ -3147,6 +3157,7 @@
 
     // ===== Hero input demo interaction =====
     const heroInput = document.querySelector('.hero-input');
+    const forecastPrompt = new URLSearchParams(window.location.search).get('forecast');
     const sampleTexts = [
       'If a central bank raises rates by 0.5%, how will market sentiment shift?',
       'How will public opinion evolve if a tech CEO resigns unexpectedly?',
@@ -3166,6 +3177,10 @@
       }, 28);
     }
 
+    if (forecastPrompt) {
+      heroInput.value = forecastPrompt;
+    }
+
     heroInput.addEventListener('focus', () => clearInterval(typingTimer));
 
     // Auto-cycle sample text every 5s when not focused
@@ -3176,7 +3191,9 @@
     }, 5000);
 
     // Start after 2s
-    setTimeout(() => typeSample(sampleTexts[0]), 2000);
+    setTimeout(() => {
+      if (!forecastPrompt) typeSample(sampleTexts[0]);
+    }, 2000);
   </script>
   <script defer src="/assets/launch-flow.js?v=20260428-site-checkout"></script>
 
